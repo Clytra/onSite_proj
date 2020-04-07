@@ -10,10 +10,22 @@ namespace onSite.Controllers
 
         public HomeController(UptimeService up) => _uptime = up;
 
-        public ViewResult Index()
-            => View(new Dictionary<string, string>
+        public ViewResult Index(bool throwException = false)
+        {
+            if (throwException)
+            {
+                throw new System.NullReferenceException();
+            }
+            return View(new Dictionary<string, string>
             {
                 ["Uptime"] = $"{_uptime.Uptime}ms"
+            });
+        }
+
+        public ViewResult Error() => View(nameof(Index),
+            new Dictionary<string, string>
+            {
+                ["Message"] = "metoda akcji o nazwie Error()"
             });
     }
 }
