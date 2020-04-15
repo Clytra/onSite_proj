@@ -8,4 +8,24 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Addresses\Controllers\" />
+    <Folder Include="Areas\Addresses\Models\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\" />
+    <Folder Include="Areas\Climbevent\Controllers\" />
+    <Folder Include="Areas\Climbevent\Models\" />
+    <Folder Include="Areas\Climbevent\Views\" />
+    <Folder Include="Areas\Contact\Controllers\" />
+    <Folder Include="Areas\Contact\Models\" />
+    <Folder Include="Areas\Contact\Views\" />
+    <Folder Include="Areas\Contest\Controllers\" />
+    <Folder Include="Areas\Contest\Models\" />
+    <Folder Include="Areas\Contest\Views\" />
+    <Folder Include="Areas\Topo\Controllers\" />
+    <Folder Include="Areas\Topo\Models\" />
+    <Folder Include="Areas\Topo\Views\" />
+  </ItemGroup>
+
 </Project>
