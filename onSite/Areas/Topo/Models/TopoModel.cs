@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace onSite.Areas.Topo.Models
+﻿namespace onSite.Areas.Topo.Models
 {
     public class TopoModel
     {
@@ -13,6 +8,8 @@ namespace onSite.Areas.Topo.Models
         public string Rock { get; set; }
         public string ClimbingRoute { get; set; }
         public string Difficulty { get; set; }
+
+        public string Description { get; set; }
 
     }
 }
