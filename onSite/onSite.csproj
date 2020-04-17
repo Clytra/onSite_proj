@@ -27,7 +27,6 @@
     <Folder Include="Areas\Contest\Controllers\" />
     <Folder Include="Areas\Contest\Models\" />
     <Folder Include="Areas\Topo\Controllers\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>
