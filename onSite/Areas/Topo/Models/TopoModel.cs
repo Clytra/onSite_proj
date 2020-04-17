@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace onSite.Areas.Topo.Models
 {
-    public class Topo
+    public class TopoModel
     {
         public int TopoID { get; set; }
         public string Voivodeship { get; set; }
