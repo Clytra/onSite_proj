@@ -1,3 +1,4 @@
 1. AREAS - jak z endpointami
 2. Context, Repozytoria - czy dobry układ w projekcie
 3. Czy SQLServer, czy np Postgres
+4. Blob w .NET (przechowywanie pdf. w bazie)

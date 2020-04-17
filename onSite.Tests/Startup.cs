@@ -4,10 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using onSite.Areas.Topo.Models;
-using onSite.Context;
 using onSite.Infrastructure;
-using onSite.Repository;
 
 namespace onSite
 {
@@ -23,13 +20,7 @@ namespace onSite
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(builder =>
-            {
-                string config = Configuration["ConnectionString"];
-            });
-
             services.AddSingleton<UptimeService>();
-            services.AddTransient<ITopoRepository, EFTopoRepository>();
             services.AddMvc();
         }
 
