@@ -10,12 +10,13 @@ namespace onSite
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        protected IConfigurationRoot Configuration { get; }
+        public Startup()
         {
-            Configuration = configuration;
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddJsonFile("appsettings.json");
+            Configuration = configurationBuilder.Build();
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
