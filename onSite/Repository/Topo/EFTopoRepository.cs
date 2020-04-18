@@ -29,10 +29,10 @@ namespace onSite.Repository
                 {
                     dbEntry.Voivodeship = topoModel.Voivodeship;
                     dbEntry.Area = topoModel.Area;
+                    dbEntry.Region = topoModel.Region;
+                    dbEntry.Sector = topoModel.Sector;
                     dbEntry.Rock = topoModel.Rock;
-                    dbEntry.ClimbingRoute = topoModel.ClimbingRoute;
-                    dbEntry.Difficulty = topoModel.Difficulty;
-                    dbEntry.Description = topoModel.Description;
+                    dbEntry.Wall = topoModel.Wall;
                 }
             }
             context.SaveChanges();

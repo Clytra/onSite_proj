@@ -1,0 +1,29 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace onSite.Areas.Topo.Models
+{
+    public class ClimbingRouteModel
+    {
+        public int ClimbingRouteID { get; set; }
+
+        [Required(ErrorMessage = "To pole nie może zostać puste.")]
+        public string Name { get; set; }
+
+        public string Assurance { get; set; }
+
+        [Required(ErrorMessage = "To pole nie może zostać puste.")]
+        public string Difficulty { get; set; }
+
+        public double Rating { get; set; }
+
+        public string Author { get; set; }
+
+        public int Year { get; set; }
+
+        public double Length { get; set; }
+
+        public string Description { get; set; }
+
+        public TopoModel TopoModel { get; set; }
+    }
+}

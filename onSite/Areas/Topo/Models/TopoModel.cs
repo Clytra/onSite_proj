@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace onSite.Areas.Topo.Models
 {
@@ -13,15 +14,17 @@ namespace onSite.Areas.Topo.Models
         public string Area { get; set; }
 
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
+        public string Region { get; set; }
+
+        [Required(ErrorMessage = "To pole nie może zostać puste.")]
+        public string Sector { get; set; }
+
+        [Required(ErrorMessage = "To pole nie może zostać puste.")]
         public string Rock { get; set; }
 
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
-        public string ClimbingRoute { get; set; }
+        public string Wall { get; set; }
 
-        [Required(ErrorMessage = "To pole nie może zostać puste.")]
-        public string Difficulty { get; set; }
-
-        public string Description { get; set; }
-
+        public ICollection<ClimbingRouteModel> Routes { get; set; }
     }
 }

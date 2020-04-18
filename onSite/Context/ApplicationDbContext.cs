@@ -8,5 +8,6 @@ namespace onSite.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<TopoModel> Topo { get; set; }
+        public DbSet<ClimbingRouteModel> Routes { get; set; }
     }
 }

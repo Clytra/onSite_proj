@@ -6,8 +6,8 @@ namespace onSite.Areas.Topo.Models
     {
         IQueryable<TopoModel> Topos { get; }
 
-        //void SaveTopo(TopoModel topoModel);
+        void SaveTopo(TopoModel topoModel);
 
-        //TopoModel DeleteTopo(int TopoID);
+        TopoModel DeleteTopo(int TopoID);
     }
 }
