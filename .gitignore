@@ -348,3 +348,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+onSite/Migrations/20200418200105_Initial.cs
+onSite/Migrations/20200418200105_Initial.Designer.cs
+onSite/Migrations/ApplicationDbContextModelSnapshot.cs
