@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using onSite.Areas.Topo.Models;
+using onSite.Areas.Topo.Models.ViewModels;
 using System.Linq;
 
 namespace onSite.Areas.Topo.Controllers
@@ -16,10 +17,19 @@ namespace onSite.Areas.Topo.Controllers
         }
 
         public ViewResult List(int topoPage = 1)
-            => View(repository.Topos
+            => View(new TopoListViewModel
+            {
+                Topos = repository.Topos
                 .OrderBy(p => p.TopoID)
                 .Skip((topoPage - 1) * PageSize)
-                .Take(PageSize));
+                .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = topoPage,
+                    RecordsPerPage = PageSize,
+                    TotalRecords = repository.Topos.Count()
+                }
+            });
 
         public ViewResult List() => View(repository.Topos);
     }
