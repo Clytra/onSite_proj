@@ -4,7 +4,8 @@ namespace onSite.Areas.Topo.Models
 {
     public class ClimbingRouteModel
     {
-        public int ClimbingRouteID { get; set; }
+        [Key]
+        public int RouteID { get; set; }
 
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
         public string Name { get; set; }

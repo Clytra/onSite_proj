@@ -5,6 +5,7 @@ namespace onSite.Areas.Topo.Models
 {
     public class TopoModel
     {
+        [Key]
         public int TopoID { get; set; }
 
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
