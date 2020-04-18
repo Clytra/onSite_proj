@@ -1,0 +1,12 @@
+﻿@model IEnumerable<TopoModel>
+
+@foreach (var p in Model)
+{
+    <div>
+        <h2>@p.Rock</h2>
+        <h3>@p.ClimbingRoute</h3>
+        @p.Description
+    </div>
+}
+
+
