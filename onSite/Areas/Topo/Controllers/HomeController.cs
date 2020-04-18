@@ -6,12 +6,12 @@ using System.Linq;
 namespace onSite.Areas.Topo.Controllers
 {
     [Area("Topo")]
-    public class TopoController : Controller
+    public class HomeController : Controller
     {
         private ITopoRepository repository;
         public int PageSize = 5;
 
-        public TopoController(ITopoRepository repo)
+        public HomeController(ITopoRepository repo)
         {
             repository = repo;
         }
@@ -30,7 +30,5 @@ namespace onSite.Areas.Topo.Controllers
                     TotalRecords = repository.Topos.Count()
                 }
             });
-
-        public ViewResult List() => View(repository.Topos);
     }
 }

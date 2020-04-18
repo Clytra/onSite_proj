@@ -27,8 +27,8 @@ namespace onSite.Tests
             }).AsQueryable<TopoModel>());
 
             //Przygotowanie
-            TopoController controller =
-                new TopoController(mock.Object) { PageSize = 3 };
+            HomeController controller =
+                new HomeController(mock.Object) { PageSize = 3 };
 
             //Dzia³anie
             TopoListViewModel result =
@@ -59,7 +59,7 @@ namespace onSite.Tests
                 new TopoModel {TopoID = 7, Voivodeship = "Województwo7", Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Ska³a7", Wall = "Œciana7"},
             }).AsQueryable<TopoModel>());
 
-            TopoController controller = new TopoController(mock.Object);
+            HomeController controller = new HomeController(mock.Object);
             controller.PageSize = 3;
 
             //Dzia³anie

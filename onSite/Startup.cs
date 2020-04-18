@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,18 +30,26 @@ namespace onSite
                 builder.UseSqlServer(config);
             });
 
-            services.AddSingleton<UptimeService>();
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.AreaViewLocationFormats.Clear();
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Views/Shared/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+            });
+
+            //services.AddSingleton<UptimeService>();
             services.AddTransient<ITopoRepository, EFTopoRepository>();
-            services.AddMvc();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if ((Configuration.GetSection("ShortCircuitMiddleware")?
-                .GetValue<bool>("EnableBrowserCircuit")).Value)
-            {
-                app.UseMiddleware<BrowserTypeMiddleware>();
-            }
+            //if ((Configuration.GetSection("ShortCircuitMiddleware")?
+            //    .GetValue<bool>("EnableBrowserCircuit")).Value)
+            //{
+            //    app.UseMiddleware<BrowserTypeMiddleware>();
+            //}
 
             if (env.IsDevelopment())
             {
@@ -57,14 +66,13 @@ namespace onSite
             app.UseRouting();
 
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
             {
-                endpoints.MapControllerRoute(
-                    name: "areas",
-                    pattern: "{area:exists}/{controller=Topo}/{action=List}");
-                endpoints.MapControllerRoute(
+                routes.MapRoute("Topo", "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+
+                routes.MapRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
