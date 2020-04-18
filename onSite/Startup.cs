@@ -38,18 +38,18 @@ namespace onSite
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
             });
 
-            //services.AddSingleton<UptimeService>();
+            services.AddSingleton<UptimeService>();
             services.AddTransient<ITopoRepository, EFTopoRepository>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //if ((Configuration.GetSection("ShortCircuitMiddleware")?
-            //    .GetValue<bool>("EnableBrowserCircuit")).Value)
-            //{
-            //    app.UseMiddleware<BrowserTypeMiddleware>();
-            //}
+            if ((Configuration.GetSection("ShortCircuitMiddleware")?
+                .GetValue<bool>("EnableBrowserCircuit")).Value)
+            {
+                app.UseMiddleware<BrowserTypeMiddleware>();
+            }
 
             if (env.IsDevelopment())
             {
@@ -68,7 +68,7 @@ namespace onSite
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("Topo", "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+                routes.MapRoute("Topo", "{area:exists}/{controller=Home}/{action=List}");
 
                 routes.MapRoute(
                     name: "default",
