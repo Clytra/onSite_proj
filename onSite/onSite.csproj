@@ -37,7 +37,6 @@
     <Folder Include="Areas\Contest\Controllers\" />
     <Folder Include="Areas\Contest\Models\" />
     <Folder Include="Areas\Contest\Views\Home\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
