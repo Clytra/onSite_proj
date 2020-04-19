@@ -32,7 +32,7 @@ namespace onSite.Tests
 
             //Dzia³anie
             TopoListViewModel result =
-                controller.List(2).ViewData.Model as TopoListViewModel;
+                controller.List(null, 2).ViewData.Model as TopoListViewModel;
 
             //Asercje
             PagingInfo pageInfo = result.PagingInfo;
@@ -63,7 +63,7 @@ namespace onSite.Tests
             controller.PageSize = 3;
 
             //Dzia³anie
-            TopoListViewModel result = controller.List(2).ViewData.Model as TopoListViewModel;
+            TopoListViewModel result = controller.List(null, 2).ViewData.Model as TopoListViewModel;
 
             //Asercje
             TopoModel[] topoArray = result.Topos.ToArray();

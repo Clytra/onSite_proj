@@ -16,10 +16,11 @@ namespace onSite.Areas.Topo.Controllers
             repository = repo;
         }
 
-        public ViewResult List(int topoPage = 1)
+        public ViewResult List(string type, int topoPage = 1)
             => View(new TopoListViewModel
             {
                 Topos = repository.Topos
+                .Where(p => type == null || p.Area == type)
                 .OrderBy(p => p.TopoID)
                 .Skip((topoPage - 1) * PageSize)
                 .Take(PageSize),
@@ -28,7 +29,8 @@ namespace onSite.Areas.Topo.Controllers
                     CurrentPage = topoPage,
                     RecordsPerPage = PageSize,
                     TotalRecords = repository.Topos.Count()
-                }
+                },
+                CurrentType = type
             });
     }
 }
