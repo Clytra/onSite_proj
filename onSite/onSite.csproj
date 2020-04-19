@@ -31,9 +31,6 @@
     <Folder Include="Areas\Climbevent\Controllers\" />
     <Folder Include="Areas\Climbevent\Models\" />
     <Folder Include="Areas\Climbevent\Views\Home\" />
-    <Folder Include="Areas\Contact\Controllers\" />
-    <Folder Include="Areas\Contact\Models\" />
-    <Folder Include="Areas\Contact\Views\Home\" />
     <Folder Include="Areas\Contest\Controllers\" />
     <Folder Include="Areas\Contest\Models\" />
     <Folder Include="Areas\Contest\Views\Home\" />
