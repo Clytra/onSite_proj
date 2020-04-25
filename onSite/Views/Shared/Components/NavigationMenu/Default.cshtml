@@ -1,0 +1,21 @@
+﻿@model IEnumerable<string>
+
+<a class="btn btn-block btn-secondary"
+   asp-action="List"
+   asp-area="Topo"
+   asp-controller="Home"
+   asp-route-area="">
+    Strona główna
+</a>
+
+@foreach (string areas in Model)
+{
+    <a class="btn btn-block btn-secondary"
+       asp-action="List"
+       asp-area="Topo"
+       asp-controller="Home"
+       asp-route-area="@areas"
+       asp-route-topoPage="1">
+        @areas
+    </a>
+}

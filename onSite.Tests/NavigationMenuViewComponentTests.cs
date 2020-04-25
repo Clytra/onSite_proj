@@ -10,7 +10,7 @@ using Xunit;
 
 namespace onSite.Tests
 {
-    class NavigationMenuViewComponentTests
+    public class NavigationMenuViewComponentTests
     {
         [Fact]
         public void Can_Select_Areas()
