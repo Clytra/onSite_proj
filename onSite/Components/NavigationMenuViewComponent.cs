@@ -18,6 +18,7 @@ namespace onSite.Components
 
         public IViewComponentResult Invoke()
         {
+            ViewBag.SelectedArea = RouteData?.Values["area"];
             return View(repository.Topos
                 .Select(x => x.Area)
                 .Distinct()
