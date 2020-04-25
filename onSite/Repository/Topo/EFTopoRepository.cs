@@ -1,4 +1,5 @@
-﻿using onSite.Areas.Topo.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using onSite.Areas.Topo.Models;
 using onSite.Context;
 using System.Linq;
 
@@ -13,10 +14,12 @@ namespace onSite.Repository
             context = ctx;
         }
 
-        public IQueryable<TopoModel> Topos => context.Topo;
+        public IQueryable<TopoModel> Topos => context.Topo
+            .Include(o => o.Routes);
         
         public void SaveTopo(TopoModel topoModel)
         {
+            context.AttachRange(topoModel.Routes.Select(l => l.Name));
             if(topoModel.TopoID == 0)
             {
                 context.Topo.Add(topoModel);
