@@ -10,7 +10,8 @@
 
 @foreach (string areas in Model)
 {
-    <a class="btn btn-block btn-secondary"
+    <a class="btn btn-block 
+       @(areas == ViewBag.SelectedArea ? "btn-primary":"btn-secondary")"
        asp-action="List"
        asp-area="Topo"
        asp-controller="Home"
