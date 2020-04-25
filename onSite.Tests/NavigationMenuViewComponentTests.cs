@@ -69,11 +69,11 @@ namespace onSite.Tests
                 }
             };
 
-            target.RouteData.Values["area"] = areaToSelect;
+            target.RouteData.Values["type"] = areaToSelect;
 
             //Działanie
             string result = (string)(target.Invoke() as
-                ViewViewComponentResult).ViewData["SelectedArea"];
+                ViewViewComponentResult).ViewData["SelectedType"];
 
             //Asercje
             Assert.Equal(areaToSelect, result);

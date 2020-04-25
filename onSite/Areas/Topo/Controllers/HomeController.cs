@@ -28,7 +28,10 @@ namespace onSite.Areas.Topo.Controllers
                 {
                     CurrentPage = topoPage,
                     RecordsPerPage = PageSize,
-                    TotalRecords = repository.Topos.Count()
+                    TotalRecords = type == null ?
+                        repository.Topos.Count() :
+                        repository.Topos.Where(e => 
+                        e.Area == type).Count()
                 },
                 CurrentType = type
             });
