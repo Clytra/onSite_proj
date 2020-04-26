@@ -30,7 +30,6 @@ namespace onSite.Repository
                     .FirstOrDefault(p => p.TopoID == topoModel.TopoID);
                 if(dbEntry != null)
                 {
-                    dbEntry.Voivodeship = topoModel.Voivodeship;
                     dbEntry.Area = topoModel.Area;
                     dbEntry.Region = topoModel.Region;
                     dbEntry.Sector = topoModel.Sector;

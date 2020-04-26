@@ -3,6 +3,7 @@ using Moq;
 using onSite.Areas.Topo.Controllers;
 using onSite.Areas.Topo.Models;
 using onSite.Areas.Topo.Models.ViewModels;
+using onSite.ViewModels;
 using System;
 using System.Linq;
 using Xunit;
@@ -18,13 +19,13 @@ namespace onSite.Tests
             Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
             mock.Setup(m => m.Topos).Returns((new TopoModel[]
             {
-                new TopoModel {TopoID = 1, Voivodeship = "Województwo1", Area = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Ska³a1", Wall = "Œciana1"},
-                new TopoModel {TopoID = 2, Voivodeship = "Województwo2", Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Ska³a2", Wall = "Œciana2"},
-                new TopoModel {TopoID = 3, Voivodeship = "Województwo3", Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Ska³a3", Wall = "Œciana3"},
-                new TopoModel {TopoID = 4, Voivodeship = "Województwo4", Area = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Ska³a4", Wall = "Œciana4"},
-                new TopoModel {TopoID = 5, Voivodeship = "Województwo5", Area = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Ska³a5", Wall = "Œciana5"},
-                new TopoModel {TopoID = 6, Voivodeship = "Województwo6", Area = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Ska³a6", Wall = "Œciana6"},
-                new TopoModel {TopoID = 7, Voivodeship = "Województwo7", Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Ska³a7", Wall = "Œciana7"},
+                new TopoModel {TopoID = 1, Area = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Ska³a1", Wall = "Œciana1"},
+                new TopoModel {TopoID = 2, Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Ska³a2", Wall = "Œciana2"},
+                new TopoModel {TopoID = 3, Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Ska³a3", Wall = "Œciana3"},
+                new TopoModel {TopoID = 4, Area = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Ska³a4", Wall = "Œciana4"},
+                new TopoModel {TopoID = 5, Area = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Ska³a5", Wall = "Œciana5"},
+                new TopoModel {TopoID = 6, Area = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Ska³a6", Wall = "Œciana6"},
+                new TopoModel {TopoID = 7, Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Ska³a7", Wall = "Œciana7"},
             }).AsQueryable<TopoModel>());
 
             HomeController target = new HomeController(mock.Object);
@@ -57,13 +58,13 @@ namespace onSite.Tests
             Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
             mock.Setup(m => m.Topos).Returns((new TopoModel[]
             {
-                new TopoModel {TopoID = 1, Voivodeship = "Województwo1", Area = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Ska³a1", Wall = "Œciana1"},
-                new TopoModel {TopoID = 2, Voivodeship = "Województwo2", Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Ska³a2", Wall = "Œciana2"},
-                new TopoModel {TopoID = 3, Voivodeship = "Województwo3", Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Ska³a3", Wall = "Œciana3"},
-                new TopoModel {TopoID = 4, Voivodeship = "Województwo4", Area = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Ska³a4", Wall = "Œciana4"},
-                new TopoModel {TopoID = 5, Voivodeship = "Województwo5", Area = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Ska³a5", Wall = "Œciana5"},
-                new TopoModel {TopoID = 6, Voivodeship = "Województwo6", Area = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Ska³a6", Wall = "Œciana6"},
-                new TopoModel {TopoID = 7, Voivodeship = "Województwo7", Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Ska³a7", Wall = "Œciana7"},
+                new TopoModel {TopoID = 1, Area = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Ska³a1", Wall = "Œciana1"},
+                new TopoModel {TopoID = 2, Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Ska³a2", Wall = "Œciana2"},
+                new TopoModel {TopoID = 3, Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Ska³a3", Wall = "Œciana3"},
+                new TopoModel {TopoID = 4, Area = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Ska³a4", Wall = "Œciana4"},
+                new TopoModel {TopoID = 5, Area = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Ska³a5", Wall = "Œciana5"},
+                new TopoModel {TopoID = 6, Area = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Ska³a6", Wall = "Œciana6"},
+                new TopoModel {TopoID = 7, Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Ska³a7", Wall = "Œciana7"},
             }).AsQueryable<TopoModel>());
 
             //Przygotowanie
@@ -90,13 +91,13 @@ namespace onSite.Tests
             Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
             mock.Setup(m => m.Topos).Returns((new TopoModel[]
             {
-                new TopoModel {TopoID = 1, Voivodeship = "Województwo1", Area = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Ska³a1", Wall = "Œciana1"},
-                new TopoModel {TopoID = 2, Voivodeship = "Województwo2", Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Ska³a2", Wall = "Œciana2"},
-                new TopoModel {TopoID = 3, Voivodeship = "Województwo3", Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Ska³a3", Wall = "Œciana3"},
-                new TopoModel {TopoID = 4, Voivodeship = "Województwo4", Area = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Ska³a4", Wall = "Œciana4"},
-                new TopoModel {TopoID = 5, Voivodeship = "Województwo5", Area = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Ska³a5", Wall = "Œciana5"},
-                new TopoModel {TopoID = 6, Voivodeship = "Województwo6", Area = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Ska³a6", Wall = "Œciana6"},
-                new TopoModel {TopoID = 7, Voivodeship = "Województwo7", Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Ska³a7", Wall = "Œciana7"},
+                new TopoModel {TopoID = 1, Area = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Ska³a1", Wall = "Œciana1"},
+                new TopoModel {TopoID = 2, Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Ska³a2", Wall = "Œciana2"},
+                new TopoModel {TopoID = 3, Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Ska³a3", Wall = "Œciana3"},
+                new TopoModel {TopoID = 4, Area = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Ska³a4", Wall = "Œciana4"},
+                new TopoModel {TopoID = 5, Area = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Ska³a5", Wall = "Œciana5"},
+                new TopoModel {TopoID = 6, Area = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Ska³a6", Wall = "Œciana6"},
+                new TopoModel {TopoID = 7, Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Ska³a7", Wall = "Œciana7"},
             }).AsQueryable<TopoModel>());
 
             HomeController controller = new HomeController(mock.Object);
@@ -108,8 +109,8 @@ namespace onSite.Tests
             //Asercje
             TopoModel[] topoArray = result.Topos.ToArray();
             Assert.True(topoArray.Length == 2);
-            Assert.Equal("Województwo4", topoArray[0].Voivodeship);
-            Assert.Equal("Województwo5", topoArray[1].Voivodeship);
+            Assert.Equal("Obszar4", topoArray[0].Area);
+            Assert.Equal("Obszar5", topoArray[1].Area);
         }
     }
 }

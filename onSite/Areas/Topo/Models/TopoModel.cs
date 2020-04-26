@@ -9,9 +9,6 @@ namespace onSite.Areas.Topo.Models
         public int TopoID { get; set; }
 
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
-        public string Voivodeship { get; set; }
-
-        [Required(ErrorMessage = "To pole nie może zostać puste.")]
         public string Area { get; set; }
 
         [Required(ErrorMessage = "To pole nie może zostać puste.")]

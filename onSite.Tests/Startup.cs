@@ -54,11 +54,6 @@ namespace onSite
                     areaName: "Topo",
                     pattern: "Topo/{controller=Home}/{action=List}");
 
-                endpoints.MapAreaControllerRoute(
-                    name: "MyAreaAdmin",
-                    areaName: "Admin",
-                    pattern: "Admin/{controller=Home}/{action=Index}");
-
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

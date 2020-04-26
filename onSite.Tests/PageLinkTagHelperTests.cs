@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Moq;
 using onSite.Areas.Topo.Models.ViewModels;
 using onSite.Infrastructure;
+using onSite.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
