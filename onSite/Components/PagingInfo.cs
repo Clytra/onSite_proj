@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace onSite.ViewModels
+namespace onSite.Components
 {
     public class PagingInfo
     {

@@ -1,4 +1,4 @@
-﻿using onSite.ViewModels;
+﻿using onSite.Components;
 using System.Collections.Generic;
 
 namespace onSite.Areas.Topo.Models.ViewModels

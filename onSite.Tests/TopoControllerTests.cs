@@ -3,7 +3,7 @@ using Moq;
 using onSite.Areas.Topo.Controllers;
 using onSite.Areas.Topo.Models;
 using onSite.Areas.Topo.Models.ViewModels;
-using onSite.ViewModels;
+using onSite.Components;
 using System;
 using System.Linq;
 using Xunit;
