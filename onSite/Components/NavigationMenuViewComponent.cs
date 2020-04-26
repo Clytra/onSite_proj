@@ -16,9 +16,9 @@ namespace onSite.Components
 
         public IViewComponentResult Invoke()
         {
-            ViewBag.SelectedArea = RouteData?.Values["area"];
+            ViewBag.SelectedRegion = RouteData?.Values["region"];
             return View(repository.Topos
-                .Select(x => x.Area)
+                .Select(x => x.Region)
                 .Distinct()
                 .OrderBy(x => x));
         }

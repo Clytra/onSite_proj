@@ -27,13 +27,11 @@
         </nav>
     </header>
     <div class="row m-1 p-1">
-        <div id="types" class="col-2">
+        <div id="regions" class="col-2">
             @await Component.InvokeAsync("NavigationMenu")
         </div>
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+        <div class="col-9">
+            @RenderBody()
         </div>
     </div>
     <footer class="border-top footer text-muted">

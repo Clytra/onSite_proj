@@ -1,22 +1,16 @@
 ﻿@model IEnumerable<string>
 
-<a class="btn btn-block btn-secondary"
+<a class=" btn btn-block btn-secondary"
    asp-action="List"
-   asp-area="Topo"
    asp-controller="Home"
-   asp-route-area="">
-    Strona główna
-</a>
+   asp-route-region="">Strona główna</a>
 
-@foreach (string areas in Model)
+@foreach (string region in Model)
 {
-    <a class="btn btn-block 
-       @(areas == ViewBag.SelectedArea ? "btn-primary":"btn-secondary")"
+    <a class="btn btn-block
+       @(region == ViewBag.SelectedRegion? "btn-primary" : "btn-secondary")"
        asp-action="List"
-       asp-area="Topo"
        asp-controller="Home"
-       asp-route-area="@areas"
-       asp-route-topoPage="1">
-        @areas
-    </a>
+       asp-route-region="@region"
+       asp-route-routePage="1">@region</a>
 }

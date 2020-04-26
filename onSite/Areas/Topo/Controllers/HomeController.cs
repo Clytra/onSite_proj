@@ -17,11 +17,11 @@ namespace onSite.Areas.Topo.Controllers
             repository = repo;
         }
 
-        public ViewResult List(string type, int topoPage = 1)
+        public ViewResult List(string region, int topoPage = 1)
             => View(new TopoListViewModel
             {
                 Topos = repository.Topos
-                .Where(p => type == null || p.Area == type)
+                .Where(p => region == null || p.Region == region)
                 .OrderBy(p => p.TopoID)
                 .Skip((topoPage - 1) * PageSize)
                 .Take(PageSize),
@@ -29,12 +29,12 @@ namespace onSite.Areas.Topo.Controllers
                 {
                     CurrentPage = topoPage,
                     RecordsPerPage = PageSize,
-                    TotalRecords = type == null ?
+                    TotalRecords = region == null ?
                         repository.Topos.Count() :
-                        repository.Topos.Where(e => 
-                        e.Area == type).Count()
+                        repository.Topos.Where(e =>
+                        e.Region == region).Count()
                 },
-                CurrentType = type
+                CurrentRegion = region
             });
     }
 }
