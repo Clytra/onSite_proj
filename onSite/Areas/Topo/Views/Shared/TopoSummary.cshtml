@@ -25,7 +25,9 @@
             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                 <ul class="panel-body">
                     @Model.Rock
-                    <li>@Model.Wall</li>
+                    <div class="list-group">
+                        <a asp-action="Routes" class="list-group-item list-group-item-action">@Model.Wall</a>
+                    </div>
                 </ul>
             </div>
         </div>

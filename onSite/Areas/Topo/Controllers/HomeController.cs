@@ -36,5 +36,11 @@ namespace onSite.Areas.Topo.Controllers
                 },
                 CurrentRegion = region
             });
+
+        public ViewResult Routes(string wall)
+            => View(new RoutesListViewModel 
+            {
+                
+            });
     }
 }
