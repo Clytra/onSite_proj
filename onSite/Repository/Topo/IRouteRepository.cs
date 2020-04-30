@@ -5,7 +5,7 @@ namespace onSite.Repository.Topo
 {
     public interface IRouteRepository
     {
-        IQueryable<ClimbingRouteModel> Routes { get; set; }
+        IQueryable<ClimbingRouteModel> Routes { get; }
         void SaveRoute(ClimbingRouteModel climbingRouteModel);
     }
 }

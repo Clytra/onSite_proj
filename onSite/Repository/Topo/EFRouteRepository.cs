@@ -1,4 +1,5 @@
-﻿using onSite.Areas.Topo.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using onSite.Areas.Topo.Models;
 using onSite.Context;
 using System;
 using System.Linq;
@@ -14,13 +15,11 @@ namespace onSite.Repository.Topo
             context = ctx;
         }
 
-        public IQueryable<ClimbingRouteModel> Routes => context.Routes;
-
-        IQueryable<ClimbingRouteModel> IRouteRepository.Routes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IQueryable<ClimbingRouteModel> Routes => context.Routes
+            .Include(r => r.TopoModel);
 
         public void SaveRoute(ClimbingRouteModel climbingRouteModel)
         {
-
         }
     }
 }

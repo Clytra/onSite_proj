@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using onSite.Areas.Topo.Models;
 using onSite.Context;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace onSite.Repository
@@ -14,8 +15,8 @@ namespace onSite.Repository
             context = ctx;
         }
 
-        public IQueryable<TopoModel> Topos => context.Topo
-            .Include(o => o.Routes);
+        public IEnumerable<TopoModel> Topos => context.Topo
+            .Include(o => o.Routes).ToList();
         
         public void SaveTopo(TopoModel topoModel)
         {

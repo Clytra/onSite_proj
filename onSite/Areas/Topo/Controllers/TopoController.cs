@@ -2,25 +2,26 @@
 using onSite.Areas.Topo.Models;
 using onSite.Areas.Topo.Models.ViewModels;
 using onSite.Components;
+using onSite.Repository.Topo;
 using System.Linq;
 
 namespace onSite.Areas.Topo.Controllers
 {
     [Area("Topo")]
-    public class HomeController : Controller
+    public class TopoController : Controller
     {
-        private ITopoRepository repository;
+        private ITopoRepository _repository;
         public int PageSize = 5;
 
-        public HomeController(ITopoRepository repo)
+        public TopoController(ITopoRepository repo)
         {
-            repository = repo;
+            _repository = repo;
         }
 
         public ViewResult List(string region, int topoPage = 1)
             => View(new TopoListViewModel
             {
-                Topos = repository.Topos
+                Topos = _repository.Topos
                 .Where(p => region == null || p.Region == region)
                 .OrderBy(p => p.TopoID)
                 .Skip((topoPage - 1) * PageSize)
@@ -30,17 +31,11 @@ namespace onSite.Areas.Topo.Controllers
                     CurrentPage = topoPage,
                     RecordsPerPage = PageSize,
                     TotalRecords = region == null ?
-                        repository.Topos.Count() :
-                        repository.Topos.Where(e =>
+                        _repository.Topos.Count() :
+                        _repository.Topos.Where(e =>
                         e.Region == region).Count()
                 },
                 CurrentRegion = region
-            });
-
-        public ViewResult Routes(string wall)
-            => View(new RoutesListViewModel 
-            {
-                
             });
     }
 }

@@ -24,7 +24,6 @@ namespace onSite.Areas.Topo.Models
         public double Length { get; set; }
 
         public string Description { get; set; }
-
         public TopoModel TopoModel { get; set; }
     }
 }

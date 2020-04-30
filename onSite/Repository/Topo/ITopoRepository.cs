@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace onSite.Areas.Topo.Models
 {
     public interface ITopoRepository
     {
-        IQueryable<TopoModel> Topos { get; }
+        IEnumerable<TopoModel> Topos { get; }
 
         void SaveTopo(TopoModel topoModel);
 

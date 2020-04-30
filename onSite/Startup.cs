@@ -70,7 +70,7 @@ namespace onSite
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("Topo", "{area:exists}/{controller=Home}/{action=List}");
+                routes.MapRoute("Topo", "{area:exists}/{controller=Topo}/{action=List}");
 
                 routes.MapRoute(
                     name: "default",

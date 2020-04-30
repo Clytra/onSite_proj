@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClimbingRouteModel>
+﻿@model TopoModel
 
 @{
     ViewBag.Title = "Wykaz dróg wspinaczkowych";
@@ -14,7 +14,7 @@
         <th class="text-center">Długość drogi</th>
         <th class="text-center">Ocena</th>
     </tr>
-    @foreach (var row in Model)
+    @foreach (var row in Model.Routes)
     {
         <tr>
             <td class="text-left"><strong>@row.Name</strong></td>
