@@ -19,16 +19,24 @@
     </tr>
     @foreach(var row in Model.Routes)
     {
-        <tr>
-            <td>@row.RouteID</td>
-            <td>@row.Name</td>
-            <td>@row.Assurance</td>
-            <td>@row.Difficulty</td>
-            <td>@row.Rating</td>
-            <td>@row.Author</td>
-            <td>@row.Year</td>
-            <td>@row.Length</td>
-            <td>@row.Description</td>
-        </tr>
+<tr>
+    <td>@row.RouteID</td>
+    <td>@row.Name</td>
+    <td>@row.Assurance</td>
+    <td>@row.Difficulty</td>
+    <td>@row.Rating</td>
+    <td>@row.Author</td>
+    <td>@row.Year</td>
+    <td>@row.Length</td>
+    <td>@row.Description</td>
+    <td class="text-center">
+        <form asp-action="Delete" method="post">
+            <a asp-action="Edit" class="btn btn-sm btn-warning"
+               asp-route-topoId="@row.RouteID">Edytuj</a>
+            <input type="hidden" name="RouteID" value="@row.RouteID" />
+            <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+        </form>
+    </td>
+</tr>
     }
 </table>

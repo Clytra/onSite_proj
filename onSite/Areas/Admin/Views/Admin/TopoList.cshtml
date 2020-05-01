@@ -23,6 +23,17 @@
             <td>@row.Sector</td>
             <td>@row.Rock</td>
             <td>@row.Wall</td>
+            <td class="text-center">
+                <form asp-action="Delete" method="post">
+                    <a asp-action="Edit" class="btn btn-sm btn-warning"
+                       asp-route-topoId="@row.TopoID">Edytuj</a>
+                    <input type="hidden" name="TopoID" value="@row.TopoID" />
+                    <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+                </form>
+            </td>
         </tr>
     }
 </table>
+<div class="text-center">
+    <a asp-action="Create" class="btn btn-primary">Dodaj rekord</a>
+</div>
