@@ -70,6 +70,8 @@ namespace onSite
             {
                 routes.MapRoute("Topo", "{area:exists}/{controller=Topo}/{action=List}");
 
+                routes.MapRoute("Admin", "{area:exists}/{controller=Admin}/{action=TopoList}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

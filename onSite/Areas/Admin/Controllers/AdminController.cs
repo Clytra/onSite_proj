@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace onSite.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class AdminController : Controller
     {
         private ITopoRepository _repository;
@@ -14,9 +15,6 @@ namespace onSite.Areas.Admin.Controllers
         }
 
         public ViewResult TopoList()
-            => View(_repository.Topos);
-
-        public ViewResult RouteList()
             => View(_repository.Topos);
 
         public ViewResult Edit(int topoId)

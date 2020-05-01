@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TopoModel>
+﻿@model TopoListViewModel
 
 @{ 
     ViewBag.Title = "Topo Lista";
@@ -14,7 +14,7 @@
         <th class="text-center">Skała</th>
         <th class="text-center">Ściana</th>
     </tr>
-    @foreach (var row in Model)
+    @foreach (var row in Model.Topos)
     {
         <tr>
             <td>@row.TopoID</td>
@@ -23,16 +23,29 @@
             <td>@row.Sector</td>
             <td>@row.Rock</td>
             <td>@row.Wall</td>
-            <td class="text-center">
-                <form asp-action="Delete" method="post">
-                    <a asp-action="Edit" class="btn btn-sm btn-warning"
-                       asp-route-topoId="@row.TopoID">Edytuj</a>
-                    <input type="hidden" name="TopoID" value="@row.TopoID" />
-                    <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
-                </form>
-            </td>
+            <td>@row.Routes</td>
+            @foreach (var item in Model.Routes)
+            {
+                <td>@item.RouteID</td>
+                <td>@item.Name</td>
+                <td>@item.Assurance</td>
+                <td>@item.Difficulty</td>
+                <td>@item.Rating</td>
+                <td>@item.Author</td>
+                <td>@item.Year</td>
+                <td>@item.Length</td>
+                <td>@item.Description</td>
+                <td class="text-center">
+                    <form asp-action="Delete" method="post">
+                        <a asp-action="Edit" class="btn btn-sm btn-warning"
+                        asp-route-topoId="@row.TopoID">Edytuj</a>
+                        <input type="hidden" name="TopoID" value="@row.TopoID" />
+                        <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+                    </form>
+                </td>
+            }
         </tr>
-    }
+     }
 </table>
 <div class="text-center">
     <a asp-action="Create" class="btn btn-primary">Dodaj rekord</a>
