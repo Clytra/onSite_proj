@@ -25,7 +25,6 @@
     <Folder Include="Areas\Addresses\Controllers\" />
     <Folder Include="Areas\Addresses\Models\" />
     <Folder Include="Areas\Addresses\Views\Home\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Climbevent\Controllers\" />
     <Folder Include="Areas\Climbevent\Models\" />
     <Folder Include="Areas\Climbevent\Views\Home\" />

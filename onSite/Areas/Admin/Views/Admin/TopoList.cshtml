@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TopoModel>
+
+@{ 
+    ViewBag.Title = "Topo Lista";
+    Layout = "_AdminLayout";
+}
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th class="text-right">Lp.</th>
+        <th class="text-center">Obszar</th>
+        <th class="text-center">Region wspinaczkowy</th>
+        <th class="text-center">Sektor</th>
+        <th class="text-center">Skała</th>
+        <th class="text-center">Ściana</th>
+    </tr>
+    @foreach (var row in Model)
+    {
+        <tr>
+            <td>@row.TopoID</td>
+            <td>@row.Area</td>
+            <td>@row.Region</td>
+            <td>@row.Sector</td>
+            <td>@row.Rock</td>
+            <td>@row.Wall</td>
+        </tr>
+    }
+</table>

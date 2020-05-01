@@ -1,0 +1,34 @@
+﻿@model TopoModel
+
+@{
+    ViewBag.Title = "Drogi Lista";
+    Layout = "_AdminLayout";
+}
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th class="text-right">Lp.</th>
+        <th class="text-center">Nazwa drogi wspinaczkowej</th>
+        <th class="text-center">Punkty asekuracyjne</th>
+        <th class="text-center">Wycena</th>
+        <th class="text-center">Ocena wspinaczy</th>
+        <th class="text-center">Autor drogi</th>
+        <th class="text-center">Rok założenia</th>
+        <th class="text-center">Długość drogi</th>
+        <th class="text-center">Opisy drogi</th>
+    </tr>
+    @foreach(var row in Model.Routes)
+    {
+        <tr>
+            <td>@row.RouteID</td>
+            <td>@row.Name</td>
+            <td>@row.Assurance</td>
+            <td>@row.Difficulty</td>
+            <td>@row.Rating</td>
+            <td>@row.Author</td>
+            <td>@row.Year</td>
+            <td>@row.Length</td>
+            <td>@row.Description</td>
+        </tr>
+    }
+</table>
