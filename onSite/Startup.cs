@@ -9,7 +9,6 @@ using onSite.Areas.Topo.Models;
 using onSite.Context;
 using onSite.Infrastructure;
 using onSite.Repository;
-using onSite.Repository.Topo;
 
 namespace onSite
 {
@@ -41,7 +40,6 @@ namespace onSite
 
             services.AddSingleton<UptimeService>();
             services.AddTransient<ITopoRepository, EFTopoRepository>();
-            services.AddTransient<IRouteRepository, EFRouteRepository>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
