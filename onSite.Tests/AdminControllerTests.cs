@@ -11,7 +11,7 @@ namespace onSite.Tests
     public class AdminControllerTests
     {
         [Fact]
-        public void Index_Contains_All_Topo()
+        public void TopoList_Contains_All_Topo()
         {
             //Przygotowanie - tworzenie imitacji repozytorium
             Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
@@ -26,11 +26,11 @@ namespace onSite.Tests
             }.AsQueryable<TopoModel>());
 
             //Przygotowanie - utworzenie kontrolera
-            HomeController target = new HomeController(mock.Object);
+            AdminController target = new AdminController(mock.Object);
 
             //Działanie
             TopoModel[] result =
-                GetViewModel<IEnumerable<TopoModel>>(target.Index())?.ToArray();
+                GetViewModel<IEnumerable<TopoModel>>(target.TopoList())?.ToArray();
 
             //Asercje
             Assert.Equal(3, result.Length);
@@ -41,7 +41,6 @@ namespace onSite.Tests
             Assert.Equal("Obszar5", result[4].Area);
             Assert.Equal("Obszar6", result[5].Area);
             Assert.Equal("Obszar7", result[6].Area);
-
         }
 
         private T GetViewModel<T>(IActionResult result) where T : class
