@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using onSite.Areas.Topo.Models;
 using onSite.Context;
 using onSite.Infrastructure;
 using onSite.Repository;
@@ -40,6 +39,7 @@ namespace onSite
 
             services.AddSingleton<UptimeService>();
             services.AddTransient<ITopoRepository, EFTopoRepository>();
+            services.AddTransient<IRouteRepository, EFRouteRepository>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 

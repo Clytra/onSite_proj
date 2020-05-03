@@ -1,7 +1,7 @@
 ﻿using onSite.Areas.Topo.Models;
 using System.Collections.Generic;
 
-namespace onSite.Repository.Topo
+namespace onSite.Repository
 {
     public interface IRouteRepository
     {

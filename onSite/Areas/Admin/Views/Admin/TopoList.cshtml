@@ -44,8 +44,8 @@
                 <td class="text-center">
                     <form asp-action="Delete" method="post">
                         <a asp-action="Edit" class="btn btn-sm btn-warning"
-                        asp-route-topoId="@row.TopoID">Edytuj</a>
-                        <input type="hidden" name="TopoID" value="@row.TopoID" />
+                        asp-route-topoId="@item.RouteID">Edytuj</a>
+                        <input type="hidden" name="RouteID" value="@item.RouteID" />
                         <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
                     </form>
                 </td>

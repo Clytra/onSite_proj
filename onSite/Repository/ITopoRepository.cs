@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using onSite.Areas.Topo.Models;
 
-namespace onSite.Areas.Topo.Models
+namespace onSite.Repository
 {
     public interface ITopoRepository
     {
