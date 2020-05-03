@@ -13,6 +13,14 @@
         <th class="text-center">Sektor</th>
         <th class="text-center">Skała</th>
         <th class="text-center">Ściana</th>
+        <th class="text-center">Droga wspinaczkowa</th>
+        <th class="text-center">Punkty asekuracyjne</th>
+        <th class="text-center">Wycena</th>
+        <th class="text-center">Ocena użytkowników</th>
+        <th class="text-center">Autor</th>
+        <th class="text-center">Rok założenia</th>
+        <th class="text-center">Długość drogi</th>
+        <th class="text-center">Uwagi</th>
     </tr>
     @foreach (var row in Model.Topos)
     {
@@ -23,10 +31,8 @@
             <td>@row.Sector</td>
             <td>@row.Rock</td>
             <td>@row.Wall</td>
-            <td>@row.Routes</td>
-            @foreach (var item in Model.Routes)
+            @foreach (var item in row.Routes)
             {
-                <td>@item.RouteID</td>
                 <td>@item.Name</td>
                 <td>@item.Assurance</td>
                 <td>@item.Difficulty</td>

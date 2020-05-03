@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using onSite.Areas.Topo.Models;
+using onSite.Areas.Topo.Models.ViewModels;
 using System.Linq;
 
 namespace onSite.Areas.Admin.Controllers
@@ -15,7 +16,10 @@ namespace onSite.Areas.Admin.Controllers
         }
 
         public ViewResult TopoList()
-            => View(_repository.Topos);
+            => View(new TopoListViewModel
+            {
+                Topos = _repository.Topos
+            });
 
         public ViewResult Edit(int topoId)
             => View(_repository.Topos
