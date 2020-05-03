@@ -39,7 +39,6 @@ namespace onSite
 
             services.AddSingleton<UptimeService>();
             services.AddTransient<ITopoRepository, EFTopoRepository>();
-            services.AddTransient<IRouteRepository, EFRouteRepository>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 

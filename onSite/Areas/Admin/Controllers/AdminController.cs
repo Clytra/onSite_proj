@@ -8,23 +8,21 @@ namespace onSite.Areas.Admin.Controllers
     [Area("Admin")]
     public class AdminController : Controller
     {
-        private ITopoRepository _topoRepository;
-        private IRouteRepository _routeRepository;
+        private ITopoRepository _repository;
 
-        public AdminController(ITopoRepository tRepo, IRouteRepository rRepo)
+        public AdminController(ITopoRepository repo)
         {
-            _topoRepository = tRepo;
-            _routeRepository = rRepo;
+            _repository = repo;
         }
 
         public ViewResult TopoList()
             => View(new TopoListViewModel
             {
-                Topos = _topoRepository.Topos
+                Topos = _repository.Topos
             });
 
-        public ViewResult Edit(int routeId)
-            => View(_routeRepository.Routes
-                .FirstOrDefault(t => t.RouteID == routeId));
+        public ViewResult Edit(int topoId)
+            => View(_repository.Topos
+                .FirstOrDefault(t => t.TopoID == topoId));
     }
 }
