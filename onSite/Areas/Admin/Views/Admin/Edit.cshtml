@@ -1,0 +1,38 @@
+﻿@model ClimbingRouteModel
+
+@{
+    ViewBag.Title = "Edycja rekordu";
+    Layout = "_AdminLayout";
+}
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="RouteID" />
+    <div class="form-group">
+        <label asp-for="Name">Droga wspinaczkowa</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Assurance">Punkty asekuracyjne</label>
+        <input asp-for="Assurance" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Difficulty">Wycena</label>
+        <input asp-for="Difficulty" class="form-control" />
+    </div>
+    <div class="form-control">
+        <label asp-for="Author">Autor</label>
+        <input asp-for="Author" class="form-control" />
+    </div>
+    <div class="form-control">
+        <label asp-for="Year">Rok</label>
+        <input asp-for="Year" class="form-control" />
+    </div>
+    <div class="form-control">
+        <label asp-for="Length">Długość drogi</label>
+        <input asp-for="Length" class="form-control" />
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Zapisz</button>
+        <a asp-action="TopoList" class="btn btn-secondary">Anuluj</a>
+    </div>
+</form>
