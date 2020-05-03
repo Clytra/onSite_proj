@@ -28,6 +28,7 @@ namespace onSite.Repository
             else
             {
                 TopoModel dbEntry = context.Topo
+                    .Include(o => o.Routes).ToList()
                     .FirstOrDefault(p => p.TopoID == topoModel.TopoID);
                 if(dbEntry != null)
                 {
@@ -36,6 +37,9 @@ namespace onSite.Repository
                     dbEntry.Sector = topoModel.Sector;
                     dbEntry.Rock = topoModel.Rock;
                     dbEntry.Wall = topoModel.Wall;
+                    foreach(var item in dbEntry.Routes)
+                    {
+                    }
                 }
             }
             context.SaveChanges();

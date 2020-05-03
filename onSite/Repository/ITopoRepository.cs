@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using onSite.Areas.Topo.Models;
+using onSite.Areas.Topo.Models.ViewModels;
 
 namespace onSite.Repository
 {
