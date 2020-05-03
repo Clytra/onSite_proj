@@ -20,7 +20,6 @@ namespace onSite.Repository
         
         public void SaveTopo(TopoModel topoModel)
         {
-            context.AttachRange(topoModel.Routes.Select(l => l.Name));
             if(topoModel.TopoID == 0)
             {
                 context.Topo.Add(topoModel);
@@ -28,8 +27,9 @@ namespace onSite.Repository
             else
             {
                 TopoModel dbEntry = context.Topo
-                    .Include(o => o.Routes).ToList()
-                    .FirstOrDefault(p => p.TopoID == topoModel.TopoID);
+                    .Where(t => t.TopoID == topoModel.TopoID)
+                    .Include(r => r.Routes)
+                    .SingleOrDefault();
                 if(dbEntry != null)
                 {
                     dbEntry.Area = topoModel.Area;
@@ -37,8 +37,21 @@ namespace onSite.Repository
                     dbEntry.Sector = topoModel.Sector;
                     dbEntry.Rock = topoModel.Rock;
                     dbEntry.Wall = topoModel.Wall;
-                    foreach(var item in dbEntry.Routes)
+                    foreach(var route in topoModel.Routes)
                     {
+                        var existingRoute = dbEntry.Routes
+                            .Where(c => c.RouteID == route.RouteID)
+                            .SingleOrDefault();
+                        if(existingRoute != null)
+                        {
+                            existingRoute.Name = route.Name;
+                            existingRoute.Assurance = route.Assurance;
+                            existingRoute.Difficulty = route.Difficulty;
+                            existingRoute.Rating = route.Rating;
+                            existingRoute.Author = route.Author;
+                            existingRoute.Year = route.Year;
+                            existingRoute.Length = route.Length;
+                        }
                     }
                 }
             }
