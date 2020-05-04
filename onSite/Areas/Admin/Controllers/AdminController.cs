@@ -45,5 +45,16 @@ namespace onSite.Areas.Admin.Controllers
 
         public ViewResult Create() =>
             View("Edit", new TopoModel());
+
+        [HttpPost]
+        public IActionResult Delete(int topoId)
+        {
+            TopoModel deletedTopo = _repository.DeleteTopo(topoId);
+            if(deletedTopo != null)
+            {
+                TempData["message"] = $"Usunięto {deletedTopo.TopoID}.";
+            }
+            return RedirectToAction("TopoList");
+        }
     }
 }
