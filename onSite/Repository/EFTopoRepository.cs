@@ -61,8 +61,10 @@ namespace onSite.Repository
         public TopoModel DeleteTopo(int TopoID)
         {
             TopoModel dbEntry = context.Topo
-                .FirstOrDefault(p => p.TopoID == TopoID);
-            if(dbEntry != null)
+                .Where(t => t.TopoID == TopoID)
+                .Include(r => r.Routes)
+                .SingleOrDefault();
+            if (dbEntry != null)
             {
                 context.Topo.Remove(dbEntry);
                 context.SaveChanges();
