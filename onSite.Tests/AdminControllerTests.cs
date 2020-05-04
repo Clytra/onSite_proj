@@ -2,6 +2,7 @@
 using Moq;
 using onSite.Areas.Admin.Controllers;
 using onSite.Areas.Topo.Models;
+using onSite.Repository;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -109,6 +110,40 @@ namespace onSite.Tests
 
             //Asercje
             Assert.Null(result);
+        }
+
+        [Fact]
+        public void Can_Delete_Valid_Records()
+        {
+            //Przygotowanie - tworzenie rekordu
+            TopoModel topoModel = new TopoModel
+            {
+                TopoID = 1,
+                Area = "Obszar1",
+                Region = "Region1",
+                Sector = "Sektor1",
+                Rock = "Skała1",
+                Wall = "Ściana1"
+            };
+
+            //Przygotowanie - tworzenie imitacji repozytorium
+            Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
+            mock.Setup(m => m.Topos).Returns(new TopoModel[]
+            {
+                topoModel,
+                new TopoModel {TopoID = 2, Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Skała2", Wall = "Ściana2"},
+                new TopoModel {TopoID = 3, Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Skała3", Wall = "Ściana3"},
+            }.AsQueryable<TopoModel>());
+
+            //Przygotowanie - tworzenie kontrolera
+            AdminController target = new AdminController(mock.Object);
+
+            //Działanie - usunięcie rekordu
+            target.Delete(topoModel.TopoID);
+
+            //Asercje - upewnienie się, że metoda repozytorium
+            //została wywołana z właściwym rekordem
+            mock.Verify(m => m.DeleteTopo(topoModel.TopoID));
         }
     }
 }
