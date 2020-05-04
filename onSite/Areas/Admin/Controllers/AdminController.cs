@@ -42,5 +42,8 @@ namespace onSite.Areas.Admin.Controllers
                 return View(topoModel);
             }
         }
+
+        public ViewResult Create() =>
+            View("Edit", new TopoModel());
     }
 }
