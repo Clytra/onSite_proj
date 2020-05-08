@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,16 @@ namespace onSite
                 builder.UseSqlServer(config);
             });
 
+            services.AddDbContext<AppIdentityDbContext>(builder =>
+            {
+                string config = Configuration["ConnectionString"];
+                builder.UseSqlServer(config);
+            });
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.AreaViewLocationFormats.Clear();
@@ -37,7 +48,6 @@ namespace onSite
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
             });
 
-            services.AddSingleton<UptimeService>();
             services.AddTransient<ITopoRepository, EFTopoRepository>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
@@ -61,6 +71,8 @@ namespace onSite
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
