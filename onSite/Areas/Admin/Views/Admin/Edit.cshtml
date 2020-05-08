@@ -11,26 +11,32 @@
         <input type="hidden" asp-for="TopoID" />
         <div class="form-group">
             <label asp-for="Area">Obszar</label>
+            <div><span asp-validation-for="Area" class="text-danger"></span></div>
             <input asp-for="Area" class="form-control" />
         </div>
         <div class="form-group">
             <label asp-for="Region">Obszar</label>
+            <div><span asp-validation-for="Region" class="text-danger"></span></div>
             <input asp-for="Region" class="form-control" />
         </div>
         <div class="form-group">
             <label asp-for="Sector">Obszar</label>
+            <div><span asp-validation-for="Sector" class="text-danger"></span></div>
             <input asp-for="Sector" class="form-control" />
         </div>
         <div class="form-group">
             <label asp-for="Rock">Obszar</label>
+            <div><span asp-validation-for="Rock" class="text-danger"></span></div>
             <input asp-for="Rock" class="form-control" />
         </div>
         <div class="form-group">
             <label asp-for="Wall">Obszar</label>
+            <div><span asp-validation-for="Wall" class="text-danger"></span></div>
             <input asp-for="Wall" class="form-control" />
         </div>
         <div class="form-group">
             <label asp-for="@row.Name">Droga wspinaczkowa</label>
+            <div><span asp-validation-for="@row.Name" class="text-danger"></span></div>
             <input asp-for="@row.Name" class="form-control" />
         </div>
         <div class="form-group">
@@ -39,6 +45,7 @@
         </div>
         <div class="form-group">
             <label asp-for="@row.Difficulty">Wycena</label>
+            <div><span asp-validation-for="@row.Difficulty" class="text-danger"></span></div>
             <input asp-for="@row.Difficulty" class="form-control" />
         </div>
         <div class="form-group">
@@ -47,6 +54,7 @@
         </div>
         <div class="form-group">
             <label asp-for="@row.Year">Rok</label>
+            <div><span asp-validation-for="@row.Year" class="text-danger"></span></div>
             <input asp-for="@row.Year" class="form-control" />
         </div>
         <div class="form-group">

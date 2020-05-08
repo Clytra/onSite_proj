@@ -19,6 +19,8 @@ namespace onSite.Areas.Topo.Models
 
         public string Author { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy}")]
         public int Year { get; set; }
 
         public double Length { get; set; }
