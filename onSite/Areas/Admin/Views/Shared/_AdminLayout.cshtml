@@ -28,6 +28,11 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <div class="bg-info p-2"><h4>@ViewBag.Title</h4></div>
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-success mt-1">@TempData["message"]</div>
+            }
             @RenderBody()
         </main>
     </div>
