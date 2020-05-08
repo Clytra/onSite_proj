@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Moq;
 using onSite.Areas.Admin.Controllers;
 using onSite.Areas.Topo.Models;
@@ -144,6 +145,60 @@ namespace onSite.Tests
             //Asercje - upewnienie się, że metoda repozytorium
             //została wywołana z właściwym rekordem
             mock.Verify(m => m.DeleteTopo(topoModel.TopoID));
+        }
+
+        [Fact]
+        public void Can_Save_Valid_changes()
+        {
+            //Przygotowanie - tworzenie imitacji repozytorium
+            Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
+
+            //Przygotowanie - tworzenie imitacji kontenera TempData
+            Mock<ITempDataDictionary> tempData = new Mock<ITempDataDictionary>();
+
+            //Przygotowanie - tworzenie kontrolera
+            AdminController target = new AdminController(mock.Object)
+            {
+                TempData = tempData.Object
+            };
+
+            //Przygotowanie - tworzenie obiektu
+            TopoModel topoModel = new TopoModel { Area = "Obszar1" };
+
+            //Działanie - prośba zapisania rekordu
+            IActionResult result = target.Edit(topoModel);
+
+            //Asercje - sprawdzanie, czy zostało wywołane repozytorium
+            mock.Verify(m => m.SaveTopo(topoModel));
+
+            //Asercje - sprawdzanie typu zwracanego z metody
+            Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("TopoList", (result as RedirectToActionResult).ActionName);
+        }
+
+        [Fact]
+        public void Cannot_Save_Invalid_Changes()
+        {
+            //Przygotowanie - tworzenie imitacji repozytorium
+            Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
+
+            //Przygotowanie - tworzenie kontrolera
+            AdminController target = new AdminController(mock.Object);
+
+            //Przygotowanie - tworzenie obiektu
+            TopoModel topoModel = new TopoModel { Area = "Obszar1" };
+
+            //Przygotowanie - dodanie błędu do stanu modelu
+            target.ModelState.AddModelError("error", "error");
+
+            //Działanie - próba zapisania obiektu
+            IActionResult result = target.Edit(topoModel);
+
+            //Asercje - sprawdzanie, czy nie zostało wywołane repozytorium
+            mock.Verify(m => m.SaveTopo(It.IsAny<TopoModel>()), Times.Never());
+
+            //Asercje - sprawdzenie typu zwracanego z metody
+            Assert.IsType<ViewResult>(result);
         }
     }
 }
