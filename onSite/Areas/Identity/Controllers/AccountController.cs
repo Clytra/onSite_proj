@@ -22,10 +22,41 @@ namespace onSite.Areas.Identity.Controllers
             _signInManager = signInMgr;
         }
 
+        public ViewResult Create() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Create(UserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityUser user = new IdentityUser
+                {
+                    UserName = model.Name,
+                    Email = model.Email
+                };
+
+                IdentityResult result =
+                    await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    foreach (IdentityError error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View(model);
+        }
+
         [AllowAnonymous]
         public ViewResult Login(string returnUrl)
         {
-            return View(new LoginModel
+            return View(new LoginViewModel
             {
                 ReturnUrl = returnUrl
             });
@@ -34,7 +65,7 @@ namespace onSite.Areas.Identity.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        public async Task<IActionResult> Login(LoginViewModel loginModel)
         {
             if (ModelState.IsValid)
             {
