@@ -1,5 +1,31 @@
 ﻿@model TopoListViewModel
 
+    <head>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+                type="text/javascript" charset="utf-8"></script>
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+                type="text/javascript" charset="utf-8"></script>
+    </head>
+
+    <div class="container">
+        <div style="width: auto; height: 480px" id="mapContainer"></div>
+        <script>
+            var platform = new H.service.Platform({
+                'apikey': 'IxnRh8y0YC2vcWaCevcF'
+            });
+
+            var defaultLayers = platform.createDefaultLayers();
+
+            var map = new H.Map(
+                document.getElementById('mapContainer'),
+                defaultLayers.vector.normal.map,
+                {
+                    zoom: 10,
+                    center: { lat: 52.5, lng: 13.4 }
+                });
+        </script>
+    </div>
 
 @foreach (var p in Model.Topos)
 {

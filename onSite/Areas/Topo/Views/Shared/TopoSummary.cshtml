@@ -1,86 +1,64 @@
 ﻿@model TopoModel
 
-    <head>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/js/accordion.js"></script>
-        <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
-                type="text/javascript" charset="utf-8"></script>
-        <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
-                type="text/javascript" charset="utf-8"></script>
-    </head>
-    @*<div class="container">
-        <div style="width: auto; height: 480px" id="mapContainer"></div>
-        <script>
-            var platform = new H.service.Platform({
-                'apikey': 'IxnRh8y0YC2vcWaCevcF'
-            });
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/accordion.js"></script>
+</head>
 
-            var defaultLayers = platform.createDefaultLayers();
-
-            var map = new H.Map(
-                document.getElementById('mapContainer'),
-                defaultLayers.vector.normal.map,
-                {
-                    zoom: 10,
-                    center: { lat: 52.5, lng: 13.4 }
-                });
-        </script>
-    </div>*@
-    <body>
-        
-        <div class="accordion-option">
-            <a href="javascript:void(0)" class="toggle-accordion active" accordion-id="#accordion"></a>
-        </div>
-        <div class="clearfix"></div>
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="card card-outline-primary m-1 p-1">
-                <div class="bg-faded p-1" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                        <div class="card card-outline-primary m-1 p-1">
-                            <div class="bg-faded p-1">
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    @Model.Region
-                                </a>
+<body>
+    <div class="accordion-option">
+        <a href="javascript:void(0)" class="toggle-accordion active" accordion-id="#accordion"></a>
+    </div>
+    <div class="clearfix"></div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="card card-outline-primary m-1 p-1">
+            <div class="bg-faded p-1" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <div class="card card-outline-primary m-1 p-1">
+                        <div class="bg-faded p-1">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                @Model.Region
+                            </a>
+                        </div>
+                    </div>
+                </h4>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <ul class="panel-body">
+                        @Model.Sector
+                        <div class="list-group">
+                            @Model.Rock
+                            <div class="list-group">
+                                @Model.Wall
+                                <table class="table table-striped table-bordered table-sm">
+                                    <tr>
+                                        <th class="text-left">Nazwa</th>
+                                        <th class="text-center">Asekuracja</th>
+                                        <th class="text-center">Wycena</th>
+                                        <th class="text-center">Rok utworzenia</th>
+                                        <th class="text-center">Autor</th>
+                                        <th class="text-center">Długość drogi</th>
+                                        <th class="text-center">Ocena</th>
+                                    </tr>
+                                    @foreach (var row in Model.Routes)
+                                    {
+                                        <tr>
+                                            <td class="text-left"><strong>@row.Name</strong></td>
+                                            <td class="text-center">@row.Assurance</td>
+                                            <td class="text-center">@row.Difficulty</td>
+                                            <td class="text-center">@row.Year</td>
+                                            <td class="text-center">@row.Author</td>
+                                            <td class="text-center">@row.Length</td>
+                                            <td class="text-center">@row.Rating</td>
+                                        </tr>
+                                    }
+                                </table>
                             </div>
                         </div>
-                    </h4>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <ul class="panel-body">
-                            @Model.Sector
-                            <div class="list-group">
-                                @Model.Rock
-                                <div class="list-group">
-                                    @Model.Wall
-                                    <table class="table table-striped table-bordered table-sm">
-                                        <tr>
-                                            <th class="text-left">Nazwa</th>
-                                            <th class="text-center">Asekuracja</th>
-                                            <th class="text-center">Wycena</th>
-                                            <th class="text-center">Rok utworzenia</th>
-                                            <th class="text-center">Autor</th>
-                                            <th class="text-center">Długość drogi</th>
-                                            <th class="text-center">Ocena</th>
-                                        </tr>
-                                        @foreach (var row in Model.Routes)
-                                        {
-                                            <tr>
-                                                <td class="text-left"><strong>@row.Name</strong></td>
-                                                <td class="text-center">@row.Assurance</td>
-                                                <td class="text-center">@row.Difficulty</td>
-                                                <td class="text-center">@row.Year</td>
-                                                <td class="text-center">@row.Author</td>
-                                                <td class="text-center">@row.Length</td>
-                                                <td class="text-center">@row.Rating</td>
-                                            </tr>
-                                        }
-                                    </table>
-                                </div>
-                            </div>
-                        </ul> 
-                    </div>
+                    </ul>
                 </div>
-                
             </div>
-        </div>
 
-    </body>
+        </div>
+    </div>
+
+</body>
