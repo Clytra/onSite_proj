@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using onSite.Context;
 using onSite.Infrastructure;
-using onSite.Models;
 using onSite.Repository;
 
 namespace onSite
@@ -82,14 +81,13 @@ namespace onSite
             {
                 routes.MapRoute("Topo", "{area:exists}/{controller=Topo}/{action=List}");
 
-                routes.MapRoute("Admin", "{area:exists}/{controller=Admin}/{action=TopoList}");
+                routes.MapRoute("Identity", "{area:exists}/{controller=Admin}/{action=TopoList}");
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
             });
-
-            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

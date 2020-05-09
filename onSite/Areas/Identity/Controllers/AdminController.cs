@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using onSite.Areas.Topo.Models;
 using onSite.Areas.Topo.Models.ViewModels;
@@ -12,10 +13,13 @@ namespace onSite.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         private ITopoRepository _repository;
+        private UserManager<IdentityUser> _userManager;
 
-        public AdminController(ITopoRepository repo)
+        public AdminController(ITopoRepository repo,
+            UserManager<IdentityUser> userMgr)
         {
             _repository = repo;
+            _userManager = userMgr;
         }
 
         public ViewResult TopoList()
