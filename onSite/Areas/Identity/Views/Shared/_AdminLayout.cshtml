@@ -13,11 +13,11 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 </head>
-<body>
+<body class="m-1 p-1">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">powrót do centrum dowodzenia ;)</a>
+                <a class="navbar-brand" asp-area="Home" asp-controller="Home" asp-action="Index">powrót do centrum dowodzenia ;)</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -32,16 +32,20 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            <div class="bg-info p-2"><h4>@ViewBag.Title</h4></div>
-            @if (TempData["message"] != null)
-            {
-                <div class="alert alert-success mt-1">@TempData["message"]</div>
-            }
-            @RenderBody()
-        </main>
+    <div class="bg-info p-2 row">
+        <div class="col">
+            <h4>@ViewBag.Title</h4>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-sm btn-primary"
+               asp-area="Identity" asp-action="Logout" asp-controller="Account">Wyloguj</a>
+        </div>
     </div>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success mt-1">@TempData["message"]</div>
+    }
+    @RenderBody()
 
     <footer class="border-top footer text-muted">
         <div class="container">
