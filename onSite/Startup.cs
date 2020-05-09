@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using onSite.Context;
 using onSite.Infrastructure;
+using onSite.Models;
 using onSite.Repository;
 
 namespace onSite
@@ -87,6 +88,8 @@ namespace onSite
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
