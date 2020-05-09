@@ -9,7 +9,6 @@
 </head>
 @RenderSection("scripts", required: false)
 <body>
-    <img class="d-flex float-none h-100 position-absolute w-100" src="~/images/background.jpg" />
     <header>
         <nav class="bg-dark fixed-top navbar navbar-dark navbar-expand-lg text-dark">
             <div class="container">
@@ -40,18 +39,6 @@
             </div>
         </nav>
     </header>
-    <div class="row">
-        <div class="col-xs-6 col-sm-3">
-            <a class="thumbnail" asp-area="Topo" asp-controller="Topo" asp-action="List">
-                <img src="~/images/iconfinder_map2_2969392.png">
-            </a>
-        </div>
-        <div class="col-xs-6 col-sm-3">
-            <a class="thumbnail" asp-area="Admin" asp-controller="Admin" asp-action="TopoList">
-                <img src="~/images/iconfinder_path_2969396.png">
-            </a>
-        </div>
-    </div>
     @RenderBody()
     <footer class="border-top footer text-muted">
         <div class="container">

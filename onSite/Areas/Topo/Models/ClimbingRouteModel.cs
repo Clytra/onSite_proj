@@ -4,6 +4,7 @@ namespace onSite.Areas.Topo.Models
 {
     public class ClimbingRouteModel
     {
+        //Primary key
         [Key]
         public int RouteID { get; set; }
 
@@ -19,13 +20,23 @@ namespace onSite.Areas.Topo.Models
 
         public string Author { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy}")]
-        public int Year { get; set; }
+        [StringLength(4)]
+        public string Year { get; set; }
 
         public double Length { get; set; }
 
         public string Description { get; set; }
-        public TopoModel TopoModel { get; set; }
+
+        public string RouteScheme { get; set; }
+
+        public bool Approved { get; set; }
+
+        public bool IsHidden { get; set; }
+
+        //Foreign key
+        public int TopoID { get; set; }
+
+        //Navigation properties
+        public virtual TopoModel TopoModel { get; set; }
     }
 }

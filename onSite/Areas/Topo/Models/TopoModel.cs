@@ -5,6 +5,7 @@ namespace onSite.Areas.Topo.Models
 {
     public class TopoModel
     {
+        //Primary key
         [Key]
         public int TopoID { get; set; }
 

@@ -30,8 +30,14 @@ namespace onSite
                 builder.UseSqlServer(config);
             });
 
+            services.AddDbContext<AppIdentityDbContext>(builder =>
+            {
+                string config = Configuration["ConnectionStringIdentity"];
+                builder.UseSqlServer(config);
+            });
+
             services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
             services.Configure<RazorViewEngineOptions>(options =>
