@@ -19,23 +19,26 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor02">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Topo" asp-controller="Topo" asp-action="List">TOPO</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Contest" asp-controller="Home" asp-action="Index">Zawody</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Climbevent" asp-controller="Home" asp-action="Index">Wspólny wspin</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Addresses" asp-controller="Home" asp-action="Index">Baza adresów</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="TopoList">Do testów</a>
-                        </li>
-                    </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Topo" asp-controller="Topo" asp-action="List">TOPO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Contest" asp-controller="Home" asp-action="Index">Zawody</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Climbevent" asp-controller="Home" asp-action="Index">Wspólny wspin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Addresses" asp-controller="Home" asp-action="Index">Baza adresów</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="TopoList">Do testów</a>
+                            </li>
+                        </ul>
+                    }
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Identity" asp-controller="Account" asp-action="LogIn">Zaloguj się</a>

@@ -2,8 +2,10 @@
 
 @{
     ViewData["Title"] = "Logowanie do aplikacji";
+    Layout = "_Layout";
 }
 
+<img src="~/images/background.jpg" class="img-fluid" alt="Responsive image" />
 <div class="row">
     <div class="col-md-4">
         <form asp-controller="Account" asp-action="LogIn" method="post">
@@ -26,7 +28,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Powrót do strony głównej</a>
+    <a asp-area="" asp-controller="Home" asp-action="Index">Powrót do strony głównej</a>
 </div>
 
 @section Scripts {

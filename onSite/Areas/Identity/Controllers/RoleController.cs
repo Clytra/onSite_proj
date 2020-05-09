@@ -7,6 +7,7 @@ using onSite.Areas.Identity.Models.ViewModels;
 namespace onSite.Areas.Admin.Controllers
 {
     [Authorize]
+    [Area("Identity")]
     public class RoleController : Controller
     {
         public IActionResult Index()

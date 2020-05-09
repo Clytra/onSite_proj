@@ -63,6 +63,9 @@ namespace onSite.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> LogIn(LoginViewModel viewModel)
         {
+            //TODO: Po dodaniu obsługi ról, uzupełnienie poniższej logiki o warunek:
+            // jeśli użytkownik == Admin - do AdminLayout
+            // pozostali do defaultowej ścieżki
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(viewModel.Login,
