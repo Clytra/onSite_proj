@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace onSite.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Identity")]
     [Authorize]
     public class AdminController : Controller
     {
