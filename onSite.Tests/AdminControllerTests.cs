@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Moq;
-using onSite.Areas.Admin.Controllers;
+using onSite.Areas.Identity.Controllers;
 using onSite.Areas.Topo.Models;
 using onSite.Repository;
 using System.Collections.Generic;
@@ -18,13 +18,13 @@ namespace onSite.Tests
             //Przygotowanie - tworzenie imitacji repozytorium
             Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
             mock.Setup(m => m.Topos).Returns(new TopoModel[] {
-                new TopoModel {TopoID = 1, Area = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Skała1", Wall = "Ściana1"},
-                new TopoModel {TopoID = 2, Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Skała2", Wall = "Ściana2"},
-                new TopoModel {TopoID = 3, Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Skała3", Wall = "Ściana3"},
-                new TopoModel {TopoID = 4, Area = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Skała4", Wall = "Ściana4"},
-                new TopoModel {TopoID = 5, Area = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Skała5", Wall = "Ściana5"},
-                new TopoModel {TopoID = 6, Area = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Skała6", Wall = "Ściana6"},
-                new TopoModel {TopoID = 7, Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Skała7", Wall = "Ściana7"},
+                new TopoModel {TopoID = 1, Territory = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Skała1", Wall = "Ściana1"},
+                new TopoModel {TopoID = 2, Territory = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Skała2", Wall = "Ściana2"},
+                new TopoModel {TopoID = 3, Territory = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Skała3", Wall = "Ściana3"},
+                new TopoModel {TopoID = 4, Territory = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Skała4", Wall = "Ściana4"},
+                new TopoModel {TopoID = 5, Territory = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Skała5", Wall = "Ściana5"},
+                new TopoModel {TopoID = 6, Territory = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Skała6", Wall = "Ściana6"},
+                new TopoModel {TopoID = 7, Territory = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Skała7", Wall = "Ściana7"},
             }.AsQueryable<TopoModel>());
 
             //Przygotowanie - utworzenie kontrolera
@@ -36,13 +36,13 @@ namespace onSite.Tests
 
             //Asercje
             Assert.Equal(3, result.Length);
-            Assert.Equal("Obszar1", result[0].Area);
-            Assert.Equal("Obszar2", result[1].Area);
-            Assert.Equal("Obszar3", result[2].Area);
-            Assert.Equal("Obszar4", result[3].Area);
-            Assert.Equal("Obszar5", result[4].Area);
-            Assert.Equal("Obszar6", result[5].Area);
-            Assert.Equal("Obszar7", result[6].Area);
+            Assert.Equal("Obszar1", result[0].Territory);
+            Assert.Equal("Obszar2", result[1].Territory);
+            Assert.Equal("Obszar3", result[2].Territory);
+            Assert.Equal("Obszar4", result[3].Territory);
+            Assert.Equal("Obszar5", result[4].Territory);
+            Assert.Equal("Obszar6", result[5].Territory);
+            Assert.Equal("Obszar7", result[6].Territory);
         }
 
         private T GetViewModel<T>(IActionResult result) where T : class
@@ -56,13 +56,13 @@ namespace onSite.Tests
             //Przygotowanie - tworzenie imitacji repozytorium
             Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
             mock.Setup(m => m.Topos).Returns(new TopoModel[] {
-                new TopoModel {TopoID = 1, Area = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Skała1", Wall = "Ściana1"},
-                new TopoModel {TopoID = 2, Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Skała2", Wall = "Ściana2"},
-                new TopoModel {TopoID = 3, Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Skała3", Wall = "Ściana3"},
-                new TopoModel {TopoID = 4, Area = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Skała4", Wall = "Ściana4"},
-                new TopoModel {TopoID = 5, Area = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Skała5", Wall = "Ściana5"},
-                new TopoModel {TopoID = 6, Area = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Skała6", Wall = "Ściana6"},
-                new TopoModel {TopoID = 7, Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Skała7", Wall = "Ściana7"},
+                new TopoModel {TopoID = 1, Territory = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Skała1", Wall = "Ściana1"},
+                new TopoModel {TopoID = 2, Territory = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Skała2", Wall = "Ściana2"},
+                new TopoModel {TopoID = 3, Territory = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Skała3", Wall = "Ściana3"},
+                new TopoModel {TopoID = 4, Territory = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Skała4", Wall = "Ściana4"},
+                new TopoModel {TopoID = 5, Territory = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Skała5", Wall = "Ściana5"},
+                new TopoModel {TopoID = 6, Territory = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Skała6", Wall = "Ściana6"},
+                new TopoModel {TopoID = 7, Territory = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Skała7", Wall = "Ściana7"},
                 }.AsQueryable<TopoModel>());
 
             //Przygotowanie - utworzenie kontrolera
@@ -94,13 +94,13 @@ namespace onSite.Tests
             Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
             mock.Setup(m => m.Topos).Returns(new TopoModel[]
             {
-                new TopoModel {TopoID = 1, Area = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Skała1", Wall = "Ściana1"},
-                new TopoModel {TopoID = 2, Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Skała2", Wall = "Ściana2"},
-                new TopoModel {TopoID = 3, Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Skała3", Wall = "Ściana3"},
-                new TopoModel {TopoID = 4, Area = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Skała4", Wall = "Ściana4"},
-                new TopoModel {TopoID = 5, Area = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Skała5", Wall = "Ściana5"},
-                new TopoModel {TopoID = 6, Area = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Skała6", Wall = "Ściana6"},
-                new TopoModel {TopoID = 7, Area = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Skała7", Wall = "Ściana7"},
+                new TopoModel {TopoID = 1, Territory = "Obszar1", Region = "Region1", Sector = "Sektor1", Rock = "Skała1", Wall = "Ściana1"},
+                new TopoModel {TopoID = 2, Territory = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Skała2", Wall = "Ściana2"},
+                new TopoModel {TopoID = 3, Territory = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Skała3", Wall = "Ściana3"},
+                new TopoModel {TopoID = 4, Territory = "Obszar4", Region = "Region4", Sector = "Sektor4", Rock = "Skała4", Wall = "Ściana4"},
+                new TopoModel {TopoID = 5, Territory = "Obszar5", Region = "Region5", Sector = "Sektor5", Rock = "Skała5", Wall = "Ściana5"},
+                new TopoModel {TopoID = 6, Territory = "Obszar6", Region = "Region6", Sector = "Sektor6", Rock = "Skała6", Wall = "Ściana6"},
+                new TopoModel {TopoID = 7, Territory = "Obszar7", Region = "Region7", Sector = "Sektor7", Rock = "Skała7", Wall = "Ściana7"},
             }.AsQueryable<TopoModel>());
 
             //Przygotowanie - utworzenie repozytorium
@@ -120,7 +120,7 @@ namespace onSite.Tests
             TopoModel topoModel = new TopoModel
             {
                 TopoID = 1,
-                Area = "Obszar1",
+                Territory = "Obszar1",
                 Region = "Region1",
                 Sector = "Sektor1",
                 Rock = "Skała1",
@@ -132,8 +132,8 @@ namespace onSite.Tests
             mock.Setup(m => m.Topos).Returns(new TopoModel[]
             {
                 topoModel,
-                new TopoModel {TopoID = 2, Area = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Skała2", Wall = "Ściana2"},
-                new TopoModel {TopoID = 3, Area = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Skała3", Wall = "Ściana3"},
+                new TopoModel {TopoID = 2, Territory = "Obszar2", Region = "Region2", Sector = "Sektor2", Rock = "Skała2", Wall = "Ściana2"},
+                new TopoModel {TopoID = 3, Territory = "Obszar3", Region = "Region3", Sector = "Sektor3", Rock = "Skała3", Wall = "Ściana3"},
             }.AsQueryable<TopoModel>());
 
             //Przygotowanie - tworzenie kontrolera
@@ -163,7 +163,7 @@ namespace onSite.Tests
             };
 
             //Przygotowanie - tworzenie obiektu
-            TopoModel topoModel = new TopoModel { Area = "Obszar1" };
+            TopoModel topoModel = new TopoModel { Territory = "Obszar1" };
 
             //Działanie - prośba zapisania rekordu
             IActionResult result = target.Edit(topoModel);
@@ -186,7 +186,7 @@ namespace onSite.Tests
             AdminController target = new AdminController(mock.Object);
 
             //Przygotowanie - tworzenie obiektu
-            TopoModel topoModel = new TopoModel { Area = "Obszar1" };
+            TopoModel topoModel = new TopoModel { Territory = "Obszar1" };
 
             //Przygotowanie - dodanie błędu do stanu modelu
             target.ModelState.AddModelError("error", "error");

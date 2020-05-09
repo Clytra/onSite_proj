@@ -7,23 +7,18 @@ using onSite.Areas.Topo.Models.ViewModels;
 using onSite.Repository;
 using System.Linq;
 
-namespace onSite.Areas.Admin.Controllers
+namespace onSite.Areas.Identity.Controllers
 {
     [Area("Identity")]
     [Authorize]
     public class AdminController : Controller
     {
         private ITopoRepository _repository;
-        private UserManager<AppUserModel> _userManager;
 
-        public AdminController(ITopoRepository repo,
-            UserManager<AppUserModel> userMgr)
+        public AdminController(ITopoRepository repo)
         {
             _repository = repo;
-            _userManager = userMgr;
         }
-
-        public ViewResult Index() => View(_userManager.Users);
 
         public ViewResult TopoList()
             => View(new TopoListViewModel
