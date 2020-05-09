@@ -5,7 +5,7 @@ namespace onSite.Areas.Identity.Models.ViewModels
     public class LoginViewModel
     {
         [Required]
-        public string Name { get; set; }
+        public string Login { get; set; }
 
         [Required]
         [UIHint("password")]

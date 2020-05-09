@@ -2,13 +2,19 @@
 
 namespace onSite.Areas.Identity.Models.ViewModels
 {
-    public class UserViewModel
+    public class RegisterViewModel
     {
         [Required]
-        public string Name { get; set; }
+        public string Login { get; set; }
+
         [Required]
         public string Email { get; set; }
+
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        [Compare("Password")]
+        public string RepeatPassword { get; set; }
     }
 }

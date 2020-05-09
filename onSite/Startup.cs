@@ -37,14 +37,8 @@ namespace onSite
                 builder.UseSqlServer(config);
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>(opts => {
-                opts.Password.RequiredLength = 8;
-                opts.Password.RequireNonAlphanumeric = false;
-                opts.Password.RequireLowercase = false;
-                opts.Password.RequireUppercase = false;
-                opts.Password.RequireDigit = false;
-            }).AddEntityFrameworkStores<AppIdentityDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
 
             services.Configure<RazorViewEngineOptions>(options =>
             {
@@ -79,6 +73,7 @@ namespace onSite
             app.UseStaticFiles();
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseRouting();
 

@@ -1,125 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using onSite.Areas.Identity.Models.ViewModels;
 
-namespace onSite.Areas.Identity.Controllers
+namespace onSite.Areas.Admin.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
-        private UserManager<IdentityUser> _userManager;
-        private SignInManager<IdentityUser> _signInManager;
-
-        public AccountController(UserManager<IdentityUser> userMgr,
-            SignInManager<IdentityUser> signInMgr)
+        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<IdentityUser> userManager;
+        public AccountController(SignInManager<IdentityUser> _signInManager,
+            UserManager<IdentityUser> _userManager)
         {
-            _userManager = userMgr;
-            _signInManager = signInMgr;
+            signInManager = _signInManager;
+            userManager = _userManager;
         }
 
-        public ViewResult Create() => View();
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Create(UserViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = new IdentityUser
-                {
-                    UserName = model.Name,
-                    Email = model.Email
-                };
-
-                IdentityResult result =
-                    await _userManager.CreateAsync(user, model.Password);
-
+                var user = new IdentityUser(viewModel.Login) { Email = viewModel.Email };
+                var result = await userManager.CreateAsync(user, viewModel.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    foreach (IdentityError error in result.Errors)
+                    var login = await signInManager.PasswordSignInAsync(viewModel.Login,
+                viewModel.Password, true, false);
+                    if (login.Succeeded)
                     {
-                        ModelState.AddModelError("", error.Description);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Nie można się zalogować!");
                     }
                 }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
             }
-            return View(model);
+            return View(viewModel);
         }
 
-        [AllowAnonymous]
-        public ViewResult Login(string returnUrl)
+        public IActionResult LogIn()
         {
-            return View(new LoginViewModel
-            {
-                ReturnUrl = returnUrl
-            });
+            return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel loginModel)
+        public async Task<IActionResult> LogIn(LoginViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user =
-                    await _userManager.FindByNameAsync(loginModel.Name);
-                if (user != null)
-                {
-                    await _signInManager.SignOutAsync();
-                    if ((await _signInManager.PasswordSignInAsync(user,
-                        loginModel.Password, false, false)).Succeeded)
-                    {
-                        return Redirect(loginModel?.ReturnUrl ?? "Admin/Index");
-                    }
-                }
-            }
-            ModelState.AddModelError("", "Niepoprawna nazwa użytkownika lub hasło");
-            return View(loginModel);
-        }
-
-        public async Task<RedirectResult> Logout(string returnUrl = "/")
-        {
-            await _signInManager.SignOutAsync();
-            return Redirect(returnUrl);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Delete(string id)
-        {
-            IdentityUser user = await _userManager.FindByIdAsync(id);
-            if (user != null)
-            {
-                IdentityResult result = await _userManager.DeleteAsync(user);
+                var result = await signInManager.PasswordSignInAsync(viewModel.Login,
+                viewModel.Password, true, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    AddErrorsFromResult(result);
+                    ModelState.AddModelError("", "Nie można się zalogować!");
                 }
             }
-            else
-            {
-                ModelState.AddModelError("", "Nie znaleziono użytkownika");
-            }
-            return View("Index", _userManager.Users);
+            return View(viewModel);
         }
 
-        private void AddErrorsFromResult(IdentityResult result)
+        [HttpGet]
+        public async Task<IActionResult> LogOut()
         {
-            foreach (IdentityError error in result.Errors)
-            {
-                ModelState.AddModelError("", error.Description);
-            }
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
