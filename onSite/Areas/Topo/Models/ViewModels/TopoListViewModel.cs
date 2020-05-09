@@ -9,6 +9,6 @@ namespace onSite.Areas.Topo.Models.ViewModels
         public IEnumerable<ClimbingRouteModel> Routes { get; set; }
 
         public PagingInfo PagingInfo { get; set; }
-        public string CurrentRegion { get; set; }
+        public string CurrentTerritory { get; set; }
     }
 }

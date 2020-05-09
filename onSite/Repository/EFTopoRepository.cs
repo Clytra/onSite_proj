@@ -32,7 +32,7 @@ namespace onSite.Repository
                     .SingleOrDefault();
                 if(dbEntry != null)
                 {
-                    dbEntry.Area = topoModel.Area;
+                    dbEntry.Territory = topoModel.Territory;
                     dbEntry.Region = topoModel.Region;
                     dbEntry.Sector = topoModel.Sector;
                     dbEntry.Rock = topoModel.Rock;

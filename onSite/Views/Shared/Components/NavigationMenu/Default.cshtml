@@ -3,14 +3,14 @@
 <a class=" btn btn-block btn-secondary"
    asp-action="List"
    asp-controller="Topo"
-   asp-route-region="">Strona główna</a>
+   asp-route-territory="">Strona główna</a>
 
-@foreach (string region in Model)
+@foreach (string territory in Model)
 {
     <a class="btn btn-block
-       @(region == ViewBag.SelectedRegion? "btn-primary" : "btn-secondary")"
+       @(territory == ViewBag.SelectedTerritory ? "btn-primary" : "btn-secondary")"
        asp-action="List"
        asp-controller="Topo"
-       asp-route-region="@region"
-       asp-route-topoPage="1">@region</a>
+       asp-route-territory="@territory"
+       asp-route-topoPage="1">@territory</a>
 }

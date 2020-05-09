@@ -10,7 +10,7 @@ namespace onSite.Areas.Topo.Models
         public int TopoID { get; set; }
 
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
-        public string Area { get; set; }
+        public string Territory { get; set; }
 
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
         public string Region { get; set; }
