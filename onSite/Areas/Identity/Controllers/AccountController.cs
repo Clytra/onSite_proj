@@ -5,6 +5,7 @@ using onSite.Areas.Identity.Models.ViewModels;
 
 namespace onSite.Areas.Admin.Controllers
 {
+    [Area("Identity")]
     public class AccountController : Controller
     {
         private readonly SignInManager<IdentityUser> signInManager;
