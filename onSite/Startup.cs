@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using onSite.Areas.Identity.Models;
 using onSite.Context;
 using onSite.Infrastructure;
 using onSite.Repository;
@@ -36,7 +37,7 @@ namespace onSite
                 builder.UseSqlServer(config);
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<AppUserModel, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
