@@ -1,36 +1,42 @@
 ﻿@model TopoListViewModel
 
-    <head>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
-                type="text/javascript" charset="utf-8"></script>
-        <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
-                type="text/javascript" charset="utf-8"></script>
-    </head>
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+            type="text/javascript" charset="utf-8"></script>
+</head>
 
-    <div class="container">
-        <div style="width: auto; height: 480px" id="mapContainer"></div>
-        <script>
-            var platform = new H.service.Platform({
-                'apikey': 'IxnRh8y0YC2vcWaCevcF'
-            });
-
-            var defaultLayers = platform.createDefaultLayers();
-
-            var map = new H.Map(
-                document.getElementById('mapContainer'),
-                defaultLayers.vector.normal.map,
-                {
-                    zoom: 10,
-                    center: { lat: 52.5, lng: 13.4 }
-                });
-        </script>
+<body>
+    @{ int i = 0;}
+    @foreach (var item in Model.Topos)
+    {
+    <div class="panel-group" id="accordion_@i">
+        <div class="panel panel-default" id="panel_@i">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-target="#collapseOne_@i"
+                       href="#collapseOne_@i">
+                        @Html.DisplayFor(modelItem => item.Sector)
+                    </a>
+                </h4>
+            </div>
+        </div>
+        <div id="collapseOne_@i" class="panel-collapse collapse in">
+            <div class="panel-body">
+                @Html.DisplayFor(modelItem => item.Rock)
+            </div>
+        </div>
+        <div id="collapseTwo_@i" class="panel-collapse collapse in">
+            <div class="panel-body">
+                @Html.DisplayFor(modelItem => item.Wall)
+            </div>
+        </div>
     </div>
-
-@foreach (var p in Model.Topos)
-{
-    @Html.Partial("TopoSummary", p);
-}
+        i++;
+    }
+</body>
 
 <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
      page-class="btn" page-class-normal="btn-secondary"

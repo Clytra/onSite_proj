@@ -57,6 +57,11 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    background-image: url("../images/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
 }
 .footer {
   position: absolute;
@@ -68,7 +73,6 @@ body {
 
 .navbar {
     transition: all 0.4s;
-    opacity: 0;
 }
 
 .navbar .nav-link {

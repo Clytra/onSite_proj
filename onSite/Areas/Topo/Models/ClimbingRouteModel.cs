@@ -33,9 +33,6 @@ namespace onSite.Areas.Topo.Models
 
         public bool IsHidden { get; set; }
 
-        //Foreign key
-        public int TopoID { get; set; }
-
         //Navigation properties
         public virtual TopoModel TopoModel { get; set; }
     }

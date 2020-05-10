@@ -1,25 +1,16 @@
-﻿$(document).ready(function () {
-
-    $(".toggle-accordion").on("click", function () {
-        var accordionId = $(this).attr("accordion-id"),
-            numPanelOpen = $(accordionId + ' .collapse.in').length;
-
-        $(this).toggleClass("active");
-
-        if (numPanelOpen == 0) {
-            openAllPanels(accordionId);
-        } else {
-            closeAllPanels(accordionId);
-        }
-    })
-
-    openAllPanels = function (aId) {
-        console.log("setAllPanelOpen");
-        $(aId + ' .panel-collapse:not(".in")').collapse('show');
-    }
-    closeAllPanels = function (aId) {
-        console.log("setAllPanelclose");
-        $(aId + ' .panel-collapse.in').collapse('hide');
-    }
-
-});
+﻿//$(document).ready(function () {
+//    var accItem = document.getElementsByClassName('accordionItem');
+//    var accHD = document.getElementsByClassName('accordionItemHeading');
+//    for (i = 0; i < accHD.length; i++) {
+//        accHD[i].addEventListener('click', toggleItem, false);
+//    }
+//    function toggleItem() {
+//        var itemClass = this.parentNode.className;
+//        for (i = 0; i < accItem.length; i++) {
+//            accItem[i].className = 'accordionItem close';
+//        }
+//        if (itemClass == 'accordionItem close') {
+//            this.parentNode.className = 'accordionItem open';
+//        }
+//    }
+//});
