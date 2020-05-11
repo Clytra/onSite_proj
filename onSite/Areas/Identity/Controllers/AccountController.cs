@@ -94,7 +94,7 @@ namespace onSite.Areas.Admin.Controllers
         [AllowAnonymous]
         public IActionResult AccessDenied()
         {
-            return View;
+            return View();
         }
     }
 }

@@ -84,6 +84,8 @@ namespace onSite
             app.UseAuthorization();
 
             app.UseRouting();
+            AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices,
+                Configuration).Wait();
 
 
             app.UseMvc(routes =>
