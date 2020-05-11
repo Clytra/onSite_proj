@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using onSite.Areas.Identity.Models.ViewModels;
@@ -82,11 +83,18 @@ namespace onSite.Areas.Admin.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> LogOut()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View;
         }
     }
 }
