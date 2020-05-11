@@ -64,11 +64,12 @@ body {
     cursor: pointer;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background-color: #07364280;
 }
 
 .navbar {
@@ -89,24 +90,7 @@ body {
      color: #fff;
 }
 
-.img-fluid {
-    /* Full height */
-    height: auto;
-    /* Center and scale the image nicely */
-    max-width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 html, body {
     margin: 0;
     padding: 0;
-}
-
-img {
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
 }
