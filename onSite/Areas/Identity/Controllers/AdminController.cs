@@ -6,6 +6,7 @@ using onSite.Areas.Topo.Models;
 using onSite.Areas.Topo.Models.ViewModels;
 using onSite.Repository;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace onSite.Areas.Identity.Controllers
 {
@@ -14,11 +15,16 @@ namespace onSite.Areas.Identity.Controllers
     public class AdminController : Controller
     {
         private ITopoRepository _repository;
+        private UserManager<IdentityUser> _userManager;
 
-        public AdminController(ITopoRepository repo)
+        public AdminController(ITopoRepository repo,
+            UserManager<IdentityUser> usrMgr)
         {
             _repository = repo;
+            _userManager = usrMgr;
         }
+
+        public ViewResult Index() => View(_userManager.Users);
 
         public ViewResult TopoList()
             => View(new TopoListViewModel
@@ -58,6 +64,37 @@ namespace onSite.Areas.Identity.Controllers
                 TempData["message"] = $"Usunięto {deletedTopo.TopoID}.";
             }
             return RedirectToAction("TopoList");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            IdentityUser user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Nie znaleziono użytkownika.");
+            }
+            return View("Index", _userManager.Users);
+        }
+
+        private void AddErrorsFromResult(IdentityResult result)
+        {
+            foreach (IdentityError error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
         }
     }
 }

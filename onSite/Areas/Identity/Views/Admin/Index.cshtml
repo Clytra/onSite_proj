@@ -2,6 +2,8 @@
 
 <div class="bg-primary m-1 p-1 text-white"><h4>Konta użytkowników</h4></div>
 
+<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
 <table class="table table-sm table-bordered">
     <tr><th>ID</th><th>Nazwa użytkownika</th><th>Adres email</th></tr>
     @if (Model.Count() == 0)
