@@ -88,7 +88,7 @@ namespace onSite.Areas.Identity.Controllers
             }
         }
 
-        public async Task<IActionResult> Edit(string id, string email, string password)
+        public async Task<IActionResult> EditUser(string id, string email, string password)
         {
             IdentityUser user = await _userManager.FindByIdAsync(id);
             if (user != null)
