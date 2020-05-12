@@ -1,16 +1,8 @@
-﻿//$(document).ready(function () {
-//    var accItem = document.getElementsByClassName('accordionItem');
-//    var accHD = document.getElementsByClassName('accordionItemHeading');
-//    for (i = 0; i < accHD.length; i++) {
-//        accHD[i].addEventListener('click', toggleItem, false);
-//    }
-//    function toggleItem() {
-//        var itemClass = this.parentNode.className;
-//        for (i = 0; i < accItem.length; i++) {
-//            accItem[i].className = 'accordionItem close';
-//        }
-//        if (itemClass == 'accordionItem close') {
-//            this.parentNode.className = 'accordionItem open';
-//        }
-//    }
-//});
+﻿function toggleIcon(e) {
+    $(e.target)
+        .prev('.panel-heading')
+        .find(".more-less")
+        .toggleClass('glyphicon-plus glyphicon-minus');
+}
+$('.panel-group').on('hidden.bs.collapse', toggleIcon);
+$('.panel-group').on('shown.bs.collapse', toggleIcon);
