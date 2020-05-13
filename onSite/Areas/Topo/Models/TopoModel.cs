@@ -5,7 +5,6 @@ namespace onSite.Areas.Topo.Models
 {
     public class TopoModel
     {
-        //Primary key
         [Key]
         public int TopoID { get; set; }
 
@@ -15,7 +14,6 @@ namespace onSite.Areas.Topo.Models
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
         public string Region { get; set; }
 
-        [Required(ErrorMessage = "To pole nie może zostać puste.")]
         public string Sector { get; set; }
 
         [Required(ErrorMessage = "To pole nie może zostać puste.")]

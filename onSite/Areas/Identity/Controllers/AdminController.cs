@@ -32,6 +32,11 @@ namespace onSite.Areas.Identity.Controllers
             _passwordHasher = passHash;
         }
 
+        public AdminController(ITopoRepository repo)
+        {
+            _repository = repo;
+        }
+
         public ViewResult Index() => View(_userManager.Users);
 
         public ViewResult TopoList()

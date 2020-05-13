@@ -33,7 +33,6 @@ namespace onSite.Areas.Topo.Models
 
         public bool IsHidden { get; set; }
 
-        //Navigation properties
         public virtual TopoModel TopoModel { get; set; }
     }
 }
