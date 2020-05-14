@@ -34,7 +34,6 @@ namespace onSite.Repository
                 {
                     dbEntry.Territory = topoModel.Territory;
                     dbEntry.Region = topoModel.Region;
-                    dbEntry.Sector = topoModel.Sector;
                     dbEntry.Rock = topoModel.Rock;
                     dbEntry.Wall = topoModel.Wall;
                     foreach(var route in topoModel.Routes)

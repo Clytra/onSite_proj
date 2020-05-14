@@ -14,8 +14,6 @@ namespace onSite.Areas.Topo.Models
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
         public string Region { get; set; }
 
-        public string Sector { get; set; }
-
         [Required(ErrorMessage = "To pole nie może zostać puste.")]
         public string Rock { get; set; }
 
