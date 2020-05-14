@@ -4,32 +4,43 @@
     ViewData["Title"] = "Logowanie do aplikacji";
     Layout = "_Layout";
 }
-
-<div class="row">
-    <div class="col-md-4">
-        <form asp-controller="Account" asp-action="LogIn" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Login" class="control-label">Login</label>
-                <input asp-for="Login" class="form-control" />
-                <span asp-validation-for="Login" class="text-danger"></span>
+<head>
+    <link rel="stylesheet" asp-href-include="~/css/account.css" />
+</head>
+<body>
+    <div style="height: 60px"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Logowanie</h5>
+                        <form class="form-signin" asp-controller="Account" asp-action="LogIn" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-label-group">
+                                <label asp-for="Login" class="control-label">Login</label>
+                                <input type="text" asp-for="Login" class="form-control" required autofocus />
+                                <span asp-validation-for="Login" class="text-danger"></span>
+                            </div>
+                            <div class="form-label-group">
+                                <label asp-for="Password" class="control-label">Hasło</label>
+                                <input type="password" asp-for="Password" class="form-control" type="password" required autofocus />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Zaloguj</button>
+                            <hr class="my-4">
+                            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Zaloguj się poprzez Google</button>
+                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Zaloguj się poprzez Facebook</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label">Hasło</label>
-                <input asp-for="Password" class="form-control" type="password" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Zaloguj się" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <div>
+            <a asp-area="" asp-controller="Home" asp-action="Index">Powrót do strony głównej</a>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-area="" asp-controller="Home" asp-action="Index">Powrót do strony głównej</a>
-</div>
-
+</body>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
