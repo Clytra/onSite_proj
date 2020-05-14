@@ -4,7 +4,6 @@ namespace onSite.Areas.Topo.Models
 {
     public class ClimbingRouteModel
     {
-        //Primary key
         [Key]
         public int RouteID { get; set; }
 

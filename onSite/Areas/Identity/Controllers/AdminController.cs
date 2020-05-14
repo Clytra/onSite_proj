@@ -15,21 +15,19 @@ namespace onSite.Areas.Identity.Controllers
     {
         private ITopoRepository _repository;
         private UserManager<IdentityUser> _userManager;
-        private IUserValidator<IdentityUser> _userValidator;
-        private IPasswordValidator<IdentityUser> _passwordValidator;
-        private IPasswordHasher<IdentityUser> _passwordHasher;
 
         public AdminController(ITopoRepository repo,
-            UserManager<IdentityUser> usrMgr,
-            IUserValidator<IdentityUser> userValid,
-            IPasswordValidator<IdentityUser> passValid,
-            IPasswordHasher<IdentityUser> passHash)
+            UserManager<IdentityUser> usrMgr)
+            //,
+            //IUserValidator<IdentityUser> userValid,
+            //IPasswordValidator<IdentityUser> passValid,
+            //IPasswordHasher<IdentityUser> passHash)
         {
             _repository = repo;
             _userManager = usrMgr;
-            _userValidator = userValid;
-            _passwordValidator = passValid;
-            _passwordHasher = passHash;
+            //_userValidator = userValid;
+            //_passwordValidator = passValid;
+            //_passwordHasher = passHash;
         }
 
         public AdminController(ITopoRepository repo)
@@ -92,52 +90,52 @@ namespace onSite.Areas.Identity.Controllers
             }
         }
 
-        public async Task<IActionResult> EditUser(string id, string email, string password)
-        {
-            IdentityUser user = await _userManager.FindByIdAsync(id);
-            if (user != null)
-            {
-                user.Email = email;
-                IdentityResult validEmail
-                    = await _userValidator.ValidateAsync(_userManager, user);
-                if (!validEmail.Succeeded)
-                {
-                    AddErrorsFromResult(validEmail);
-                }
-                IdentityResult validPass = null;
-                if (!string.IsNullOrEmpty(password))
-                {
-                    validPass = await _passwordValidator.ValidateAsync(_userManager, user, password);
-                    if (validPass.Succeeded)
-                    {
-                        user.PasswordHash = _passwordHasher.HashPassword(user, password);
-                    }
-                    else
-                    {
-                        AddErrorsFromResult(validPass);
-                    }
-                }
-                if ((validEmail.Succeeded && validPass == null)
-                    || (validEmail.Succeeded
-                    && password != string.Empty && validPass.Succeeded))
-                {
-                    IdentityResult result = await _userManager.UpdateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        AddErrorsFromResult(result);
-                    }
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", "Nie znaleziono użytkownika.");
-            }
-            return View(user);
-        }
+        //public async Task<IActionResult> EditUser(string id, string email, string password)
+        //{
+        //    IdentityUser user = await _userManager.FindByIdAsync(id);
+        //    if (user != null)
+        //    {
+        //        user.Email = email;
+        //        IdentityResult validEmail
+        //            = await _userValidator.ValidateAsync(_userManager, user);
+        //        if (!validEmail.Succeeded)
+        //        {
+        //            AddErrorsFromResult(validEmail);
+        //        }
+        //        IdentityResult validPass = null;
+        //        if (!string.IsNullOrEmpty(password))
+        //        {
+        //            validPass = await _passwordValidator.ValidateAsync(_userManager, user, password);
+        //            if (validPass.Succeeded)
+        //            {
+        //                user.PasswordHash = _passwordHasher.HashPassword(user, password);
+        //            }
+        //            else
+        //            {
+        //                AddErrorsFromResult(validPass);
+        //            }
+        //        }
+        //        if ((validEmail.Succeeded && validPass == null)
+        //            || (validEmail.Succeeded
+        //            && password != string.Empty && validPass.Succeeded))
+        //        {
+        //            IdentityResult result = await _userManager.UpdateAsync(user);
+        //            if (result.Succeeded)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //            else
+        //            {
+        //                AddErrorsFromResult(result);
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ModelState.AddModelError("", "Nie znaleziono użytkownika.");
+        //    }
+        //    return View(user);
+        //}
 
         [HttpPost]
         public async Task<IActionResult> DeleteUser(string id)

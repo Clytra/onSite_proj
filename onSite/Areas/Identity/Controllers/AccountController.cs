@@ -4,9 +4,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using onSite.Areas.Identity.Models.ViewModels;
 
-namespace onSite.Areas.Admin.Controllers
+namespace onSite.Areas.Identity.Controllers
 {
     [Area("Identity")]
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly SignInManager<IdentityUser> signInManager;
@@ -56,6 +57,7 @@ namespace onSite.Areas.Admin.Controllers
             return View(viewModel);
         }
 
+        [AllowAnonymous]
         public IActionResult LogIn()
         {
             return View();
@@ -89,12 +91,6 @@ namespace onSite.Areas.Admin.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
-        }
-
-        [AllowAnonymous]
-        public IActionResult AccessDenied()
-        {
-            return View();
         }
     }
 }

@@ -62,12 +62,6 @@ namespace onSite
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if ((Configuration.GetSection("ShortCircuitMiddleware")?
-                .GetValue<bool>("EnableBrowserCircuit")).Value)
-            {
-                app.UseMiddleware<BrowserTypeMiddleware>();
-            }
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -84,8 +78,6 @@ namespace onSite
             app.UseAuthorization();
 
             app.UseRouting();
-            AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices,
-                Configuration).Wait();
 
 
             app.UseMvc(routes =>

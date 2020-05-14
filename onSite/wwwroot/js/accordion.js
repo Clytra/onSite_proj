@@ -4,4 +4,4 @@
         .find(".more-less")
         .toggleClass('glyphicon-plus glyphicon-minus');
 }
-$('.panel-group').on('shown.bs.collapse', toggleIcon);
+$('.panel-body.animated').toggleClass('zoomIn zoomOut');  
