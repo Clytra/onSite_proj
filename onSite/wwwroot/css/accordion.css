@@ -1,4 +1,8 @@
-﻿.panel-group .panel {
+﻿.card {
+    background-color: rgba(0, 0, 0, 0.78);
+}
+
+.panel-group .panel {
     border-radius: 0;
     box-shadow: none;
     border-color: #EEEEEE;
@@ -14,12 +18,10 @@
 
 .panel-title {
     font-size: 14px;
-    background-color: #a5555521;
 }
 
 .panel-body {
-    background-color: #ffffff6e;
-    color: #021e21;
+    color: #bfbfbf;
 }
 
     .panel-title > a {

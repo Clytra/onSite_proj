@@ -3,6 +3,7 @@ using onSite.Areas.Topo.Models.ViewModels;
 using onSite.Components;
 using onSite.Repository;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace onSite.Areas.Topo.Controllers
 {
@@ -21,8 +22,8 @@ namespace onSite.Areas.Topo.Controllers
             => View(new TopoListViewModel
             {
                 Topos = _repository.Topos
-                .Where(p => territory == null || p.Territory == territory)
-                .OrderBy(p => p.TopoID)
+                .Where(t => territory == null || t.Territory == territory)
+                .OrderBy(t => t.TopoID)
                 .Skip((topoPage - 1) * PageSize)
                 .Take(PageSize),
                 PagingInfo = new PagingInfo
@@ -34,6 +35,19 @@ namespace onSite.Areas.Topo.Controllers
                         _repository.Topos.Where(e =>
                         e.Territory == territory).Count()
                 },
+
+                regions = _repository.Topos
+                .Where(r => territory == null || r.Territory == territory)
+                .Select(r => r.Region).Distinct().ToList(),
+
+                rocks = _repository.Topos
+                .Where(ro => territory == null || ro.Territory == territory)
+                .Select(ro => ro.Rock).Distinct().ToList(),
+
+                walls = _repository.Topos
+                .Where(w => territory == null || w.Territory == territory)
+                .Select(w => w.Wall).Distinct().ToList(),
+
                 CurrentTerritory = territory
             });
     }
