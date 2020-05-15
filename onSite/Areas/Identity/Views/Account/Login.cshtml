@@ -29,6 +29,13 @@
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Create">Zaloguj</button>
                             <hr class="my-4">
+                            @using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl}))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button type="submit" id=" FacebookLoginButton" name="provider" value="Facebook" title="Zaloguj się używając konta Facebook"></button>
+
+                                <button type="submit" id="GoogleLoginButton" name="provider" value="Google" title="Zaloguj się z konta Google"></button>
+                            }
                             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Zaloguj się poprzez Google</button>
                             <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Zaloguj się poprzez Facebook</button>
                         </form>
@@ -36,8 +43,11 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div class="row">
             <a asp-area="" asp-controller="Home" asp-action="Index">Powrót do strony głównej</a>
+        </div>
+        <div class="row">
+            <a asp-area="Identity" asp-controller="Account" asp-action="Register">Nie mam jeszcze konta</a>
         </div>
     </div>
 </body>
