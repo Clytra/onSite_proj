@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using onSite.Areas.Identity.Models;
 using onSite.Context;
-using onSite.Infrastructure;
+using onSite.Services;
 using onSite.Repository;
 
 namespace onSite
@@ -78,6 +78,8 @@ namespace onSite
             app.UseAuthorization();
 
             app.UseRouting();
+            //AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices,
+            //    Configuration).Wait();
 
 
             app.UseMvc(routes =>

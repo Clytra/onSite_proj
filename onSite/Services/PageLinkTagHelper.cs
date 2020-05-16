@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using onSite.Components;
 using System.Collections.Generic;
 
-namespace onSite.Infrastructure
+namespace onSite.Services
 {
     [HtmlTargetElement("div", Attributes = "page-model")]
     public class PageLinkTagHelper : TagHelper

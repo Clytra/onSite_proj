@@ -8,8 +8,10 @@ namespace onSite.Repository
     {
         IEnumerable<TopoModel> Topos { get; }
 
-        void SaveTopo(TopoModel topoModel);
+        IEnumerable<ClimbingRouteModel> Routes { get; }
 
-        TopoModel DeleteTopo(int TopoID);
+        void SaveTopo(ClimbingRouteModel climbing);
+
+        ClimbingRouteModel DeleteTopo(int TopoID);
     }
 }

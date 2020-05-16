@@ -1,0 +1,49 @@
+﻿@model ClimbingRouteModel
+
+@{
+    Layout = "_Layout";
+}
+
+<body>
+    <div style="height:60px"></div>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="@Model.RouteID" />
+        <div class="form-group">
+            <label asp-for="@Model.Name">Droga wspinaczkowa</label>
+            <div><span asp-validation-for="@Model.Name" class="text-danger"></span></div>
+            <input asp-for="@Model.Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Assurance">Punkty asekuracyjne</label>
+            <input asp-for="@Model.Assurance" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Difficulty">Wycena</label>
+            <div><span asp-validation-for="@Model.Difficulty" class="text-danger"></span></div>
+            <input asp-for="@Model.Difficulty" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Author">Autor</label>
+            <input asp-for="@Model.Author" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Year">Rok</label>
+            <div><span asp-validation-for="@Model.Year" class="text-danger"></span></div>
+            <input asp-for="@Model.Year" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Length">Długość drogi</label>
+            <input asp-for="@Model.Length" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Description">Punkty asekuracyjne</label>
+            <input asp-for="@Model.Description" class="form-control" />
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">Zapisz</button>
+            <a asp-action="TopoList" class="btn btn-secondary">Anuluj</a>
+        </div>
+    </form>
+    <div style="height:60px"></div>
+</body>
+

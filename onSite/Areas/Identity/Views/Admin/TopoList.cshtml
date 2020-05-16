@@ -1,59 +1,63 @@
-﻿@model TopoListViewModel
+﻿@model IEnumerable<TopoModel>
 
-@{ 
-    ViewBag.Title = "Topo Lista";
+@{
     Layout = "_AdminLayout";
 }
 
+
+
 <table class="table table-bordered table-striped">
-    <tr>
-        <th class="text-right">Lp.</th>
-        <th class="text-center">Obszar</th>
-        <th class="text-center">Region wspinaczkowy</th>
-        <th class="text-center">Sektor</th>
-        <th class="text-center">Skała</th>
-        <th class="text-center">Ściana</th>
-        <th class="text-center">Droga wspinaczkowa</th>
-        <th class="text-center">Punkty asekuracyjne</th>
-        <th class="text-center">Wycena</th>
-        <th class="text-center">Ocena użytkowników</th>
-        <th class="text-center">Autor</th>
-        <th class="text-center">Rok założenia</th>
-        <th class="text-center">Długość drogi</th>
-        <th class="text-center">Uwagi</th>
-        <th class="text-center">Schemat drogi</th>
-    </tr>
-    @foreach (var row in Model.Topos)
-    {
+    <thead>
         <tr>
-            <td>@row.TopoID</td>
-            <td>@row.Territory</td>
-            <td>@row.Region</td>
-            <td>@row.Rock</td>
-            <td>@row.Wall</td>
-            @foreach (var item in row.Routes)
-            {
-                <td>@item.Name</td>
-                <td>@item.Assurance</td>
-                <td>@item.Difficulty</td>
-                <td>@item.Rating</td>
-                <td>@item.Author</td>
-                <td>@item.Year</td>
-                <td>@item.Length</td>
-                <td>@item.Description</td>
-                <td>@item.RouteScheme</td>
-                <td class="text-center">
-                    <form asp-action="Delete" method="post">
-                        <a asp-action="Edit" class="btn btn-sm btn-warning"
-                        asp-route-topoId="@row.TopoID">Edytuj</a>
-                        <input type="hidden" name="TopoID" value="@row.TopoID" />
-                        <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
-                    </form>
-                </td>
-            }
+            <th>Lp.</th>
+            <th>Obszar</th>
+            <th>Region wspinaczkowy</th>
+            <th>Skała</th>
+            <th>Ściana</th>
+            <th>Droga wspinaczkowa</th>
+            <th>Punkty asekuracyjne</th>
+            <th>Wycena</th>
+            <th>Ocena użytkowników</th>
+            <th>Autor</th>
+            <th>Rok założenia</th>
+            <th>Długość drogi</th>
+            <th>Uwagi</th>
+            <th>Schemat drogi</th>
         </tr>
-     }
+    </thead>
+    @foreach (var row in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@row.TopoID</td>
+                <td>@row.Territory</td>
+                <td>@row.Region</td>
+                <td>@row.Rock</td>
+                <td>@row.Wall</td>
+                @foreach (var item in row.Routes)
+                {
+                    <td>@item.Name</td>
+                    <td>@item.Assurance</td>
+                    <td>@item.Difficulty</td>
+                    <td>@item.Rating</td>
+                    <td>@item.Author</td>
+                    <td>@item.Year</td>
+                    <td>@item.Length</td>
+                    <td>@item.Description</td>
+                    <td>@item.RouteScheme</td>
+                    <td class="text-center">
+                        <form asp-action="Delete" method="post">
+                            <a asp-action="Edit" class="btn btn-sm btn-warning"
+                               asp-route-topoId="@row.TopoID">Edytuj</a>
+                            <input type="hidden" name="TopoID" value="@row.TopoID" />
+                            <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+                        </form>
+                    </td>
+                }
+            </tr>
+        </tbody>
+    }
 </table>
 <div class="text-center">
     <a asp-action="Create" class="btn btn-primary">Dodaj rekord</a>
-</div>
+</div>iv>

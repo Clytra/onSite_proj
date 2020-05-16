@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.HttpSys;
 using onSite.Areas.Identity.Models.ViewModels;
 
 namespace onSite.Areas.Identity.Controllers
@@ -84,18 +85,38 @@ namespace onSite.Areas.Identity.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> LogOut()
+        public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ExternalLogin(string provider, string returnUrl)
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
         {
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return View();
+
+            //[HttpPost]
+            //[ValidateAntiForgeryToken]
+            //public ActionResult ExternalLogin(string provider, string returnUrl)
+            //{
+            //    //return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            //}
+
+            //public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+            //{
+            //    //var loginInfo = await AuthenticationManager.GetExternalInfoAsync();
+            //    //if(loginInfo == null)
+            //    //{
+            //    //    return RedirectToAction("Login");
+            //    //}
+
+            //    //var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            //    //switch (result)
+            //    //{
+            //    //    case SignInStatus.Succ
+            //    //}
+            //}
         }
     }
 }

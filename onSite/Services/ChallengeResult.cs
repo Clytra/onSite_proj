@@ -20,14 +20,14 @@ namespace onSite.Services
         public string RedirectUri { get; set; }
         public string UserId { get; set; }
 
-        public override void ExecuteResult(ControllerContext context)
-        {
-            var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
-            if(UserId != null)
-            {
-                properties.Dictionary[XsrfKey] = UserId;
-            }
-            context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
-        }
+        //public override void ExecuteResult(ControllerContext context)
+        //{
+        //    var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
+        //    if(UserId != null)
+        //    {
+        //        properties.Dictionary[XsrfKey] = UserId;
+        //    }
+        //    context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+        //}
     }
 }

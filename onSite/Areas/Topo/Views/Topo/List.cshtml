@@ -1,8 +1,11 @@
 ﻿@model TopoListViewModel
 
 
-
-    
+<head>
+    <link rel="stylesheet" asp-href-include="~/css/accordion.css" />
+    <script src="~/js/accordion.js"></script>
+    <link rel="stylesheet" asp-href-include="~/css/site.css" />
+</head>
 
 <body>
     <div style="height: 60px"></div>
@@ -20,7 +23,6 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrfrZb4gzSvs25rFhLkotdvez7wEutoUY&callback=initMap"
             async defer></script>
-    <div style="height: 60px"></div>
     <div class="topoData">
         @{ int i = 0;}
         @foreach (var item in Model.Topos)
@@ -30,7 +32,6 @@
         }
     </div>
 </body>
-
 
 <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
      page-class="btn" page-class-normal="btn-secondary"

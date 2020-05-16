@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace onSite.Areas.Topo.Models
 {
@@ -28,9 +31,17 @@ namespace onSite.Areas.Topo.Models
 
         public string RouteScheme { get; set; }
 
-        public bool Approved { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem> Regions { get; set; }
 
-        public bool IsHidden { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem> Areas { get; set; }
+
+        [NotMapped]
+        public IEnumerable<SelectListItem> Rocks { get; set; }
+
+        [NotMapped]
+        public IEnumerable<SelectListItem> Walls { get; set; }
 
         public virtual TopoModel TopoModel { get; set; }
     }

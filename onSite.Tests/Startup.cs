@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using onSite.Infrastructure;
+using onSite.Services;
 
 namespace onSite
 {
@@ -20,17 +20,11 @@ namespace onSite
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<UptimeService>();
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if ((Configuration.GetSection("ShortCircuitMiddleware")?
-                .GetValue<bool>("EnableBrowserCircuit")).Value)
-            {
-                app.UseMiddleware<BrowserTypeMiddleware>();
-            }
 
             if (env.IsDevelopment())
             {

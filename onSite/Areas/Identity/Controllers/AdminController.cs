@@ -16,19 +16,19 @@ namespace onSite.Areas.Identity.Controllers
         private ITopoRepository _repository;
         private UserManager<IdentityUser> _userManager;
 
-        public AdminController(ITopoRepository repo,
-            UserManager<IdentityUser> usrMgr)
-            //,
-            //IUserValidator<IdentityUser> userValid,
-            //IPasswordValidator<IdentityUser> passValid,
-            //IPasswordHasher<IdentityUser> passHash)
-        {
-            _repository = repo;
-            _userManager = usrMgr;
-            //_userValidator = userValid;
-            //_passwordValidator = passValid;
-            //_passwordHasher = passHash;
-        }
+        //public AdminController(ITopoRepository repo,
+        //    UserManager<IdentityUser> usrMgr)
+        //    //,
+        //    //IUserValidator<IdentityUser> userValid,
+        //    //IPasswordValidator<IdentityUser> passValid,
+        //    //IPasswordHasher<IdentityUser> passHash)
+        //{
+        //    _repository = repo;
+        //    _userManager = usrMgr;
+        //    //_userValidator = userValid;
+        //    //_passwordValidator = passValid;
+        //    //_passwordHasher = passHash;
+        //}
 
         public AdminController(ITopoRepository repo)
         {
@@ -38,17 +38,14 @@ namespace onSite.Areas.Identity.Controllers
         public ViewResult Index() => View(_userManager.Users);
 
         public ViewResult TopoList()
-            => View(new TopoListViewModel
-            {
-                Topos = _repository.Topos
-            });
+            => View(_repository.Topos);
 
         public ViewResult Edit(int topoId)
             => View(_repository.Topos
                 .FirstOrDefault(t => t.TopoID == topoId));
 
         [HttpPost]
-        public IActionResult Edit(TopoModel topoModel)
+        public IActionResult Edit(ClimbingRouteModel topoModel)
         {
             if (ModelState.IsValid)
             {
@@ -69,10 +66,10 @@ namespace onSite.Areas.Identity.Controllers
         [HttpPost]
         public IActionResult Delete(int topoId)
         {
-            TopoModel deletedTopo = _repository.DeleteTopo(topoId);
+            ClimbingRouteModel deletedTopo = _repository.DeleteTopo(topoId);
             if(deletedTopo != null)
             {
-                TempData["message"] = $"Usunięto {deletedTopo.TopoID}.";
+                TempData["message"] = $"Usunięto.";
             }
             return RedirectToAction("TopoList");
         }

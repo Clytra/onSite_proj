@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using onSite.Areas.Topo.Models;
+using onSite.Areas.Topo.Models.ViewModels;
 using onSite.Context;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,55 +18,61 @@ namespace onSite.Repository
 
         public IEnumerable<TopoModel> Topos => context.Topo
             .Include(o => o.Routes).ToList();
+
+        public IEnumerable<ClimbingRouteModel> Routes => context.Routes
+            .Include(o => o.TopoModel).ToList();
         
-        public void SaveTopo(TopoModel topoModel)
+        public void SaveTopo(ClimbingRouteModel topo)
         {
-            if(topoModel.TopoID == 0)
+            if(topo.RouteID == 0)
             {
-                context.Topo.Add(topoModel);
+                context.Routes.Add(topo);
             }
             else
             {
-                TopoModel dbEntry = context.Topo
-                    .Where(t => t.TopoID == topoModel.TopoID)
-                    .Include(r => r.Routes)
+                ClimbingRouteModel dbEntry = context.Routes
+                    .Where(t => t.RouteID == topo.RouteID)
+                    .Include(r => r.TopoModel)
                     .SingleOrDefault();
                 if(dbEntry != null)
                 {
-                    dbEntry.Territory = topoModel.Territory;
-                    dbEntry.Region = topoModel.Region;
-                    dbEntry.Rock = topoModel.Rock;
-                    dbEntry.Wall = topoModel.Wall;
-                    foreach(var route in topoModel.Routes)
-                    {
-                        var existingRoute = dbEntry.Routes
-                            .Where(c => c.RouteID == route.RouteID)
-                            .SingleOrDefault();
-                        if(existingRoute != null)
-                        {
-                            existingRoute.Name = route.Name;
-                            existingRoute.Assurance = route.Assurance;
-                            existingRoute.Difficulty = route.Difficulty;
-                            existingRoute.Rating = route.Rating;
-                            existingRoute.Author = route.Author;
-                            existingRoute.Year = route.Year;
-                            existingRoute.Length = route.Length;
-                        }
-                    }
+                    dbEntry.Name = topo.Name;
+                    dbEntry.Assurance = topo.Assurance;
+                    dbEntry.Difficulty = topo.Difficulty;
+                    dbEntry.Rating = topo.Rating;
+                    dbEntry.Author = topo.Author;
+                    dbEntry.Year = topo.Year;
+                    dbEntry.Length = topo.Length;
+                    dbEntry.Description = topo.Description;
+                    //foreach(var row in topo.TopoModel)
+                    //{
+                    //    var existingRoute = dbEntry.Routes
+                    //        .Where(c => c.RouteID == route.RouteID)
+                    //        .SingleOrDefault();
+                    //    if(existingRoute != null)
+                    //    {
+                    //        existingRoute.Name = route.Name;
+                    //        existingRoute.Assurance = route.Assurance;
+                    //        existingRoute.Difficulty = route.Difficulty;
+                    //        existingRoute.Rating = route.Rating;
+                    //        existingRoute.Author = route.Author;
+                    //        existingRoute.Year = route.Year;
+                    //        existingRoute.Length = route.Length;
+                    //    }
+                    //}
                 }
             }
             context.SaveChanges();
         }
 
-        public TopoModel DeleteTopo(int TopoID)
+        public ClimbingRouteModel DeleteTopo(int routeID)
         {
-            TopoModel dbEntry = context.Topo
-                .Where(t => t.TopoID == TopoID)
-                .Include(r => r.Routes)
+            ClimbingRouteModel dbEntry = context.Routes
+                .Where(t => t.RouteID == routeID)
                 .SingleOrDefault();
             if (dbEntry != null)
             {
-                context.Topo.Remove(dbEntry);
+                context.Routes.Remove(dbEntry);
                 context.SaveChanges();
             }
             return dbEntry;
