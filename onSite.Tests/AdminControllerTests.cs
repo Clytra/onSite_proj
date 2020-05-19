@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Moq;
 using onSite.Areas.Identity.Controllers;
+using onSite.Areas.Topo.Controllers;
 using onSite.Areas.Topo.Models;
 using onSite.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -12,44 +14,7 @@ namespace onSite.Tests
 {
     public class AdminControllerTests
     {
-        [Fact]
-        public void TopoList_Contains_All_Topo()
-        {
-            //Przygotowanie - tworzenie imitacji repozytorium
-            Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
-            mock.Setup(m => m.Topos).Returns(new TopoModel[] {
-                new TopoModel {TopoID = 1, Territory = "Obszar1", Region = "Region1", Rock = "Skała1", Wall = "Ściana1"},
-                new TopoModel {TopoID = 2, Territory = "Obszar2", Region = "Region2", Rock = "Skała2", Wall = "Ściana2"},
-                new TopoModel {TopoID = 3, Territory = "Obszar3", Region = "Region3", Rock = "Skała3", Wall = "Ściana3"},
-                new TopoModel {TopoID = 4, Territory = "Obszar4", Region = "Region4", Rock = "Skała4", Wall = "Ściana4"},
-                new TopoModel {TopoID = 5, Territory = "Obszar5", Region = "Region5", Rock = "Skała5", Wall = "Ściana5"},
-                new TopoModel {TopoID = 6, Territory = "Obszar6", Region = "Region6", Rock = "Skała6", Wall = "Ściana6"},
-                new TopoModel {TopoID = 7, Territory = "Obszar7", Region = "Region7", Rock = "Skała7", Wall = "Ściana7"},
-            }.AsQueryable<TopoModel>());
-
-            //Przygotowanie - utworzenie kontrolera
-            AdminController target = new AdminController(mock.Object);
-
-            //Działanie
-            TopoModel[] result =
-                GetViewModel<IEnumerable<TopoModel>>(target.TopoList())?.ToArray();
-
-            //Asercje
-            Assert.Equal(3, result.Length);
-            Assert.Equal("Obszar1", result[0].Territory);
-            Assert.Equal("Obszar2", result[1].Territory);
-            Assert.Equal("Obszar3", result[2].Territory);
-            Assert.Equal("Obszar4", result[3].Territory);
-            Assert.Equal("Obszar5", result[4].Territory);
-            Assert.Equal("Obszar6", result[5].Territory);
-            Assert.Equal("Obszar7", result[6].Territory);
-        }
-
-        private T GetViewModel<T>(IActionResult result) where T : class
-        {
-            return (result as ViewResult)?.ViewData.Model as T;
-        }
-
+        
         [Fact]
         public void Can_Edit_Record()
         {
@@ -85,6 +50,11 @@ namespace onSite.Tests
             Assert.Equal(5, t5.TopoID);
             Assert.Equal(6, t6.TopoID);
             Assert.Equal(7, t7.TopoID);
+        }
+
+        private T GetViewModel<T>(ViewResult viewResult)
+        {
+            throw new NotImplementedException();
         }
 
         [Fact]
@@ -156,13 +126,13 @@ namespace onSite.Tests
             Mock<ITempDataDictionary> tempData = new Mock<ITempDataDictionary>();
 
             //Przygotowanie - tworzenie kontrolera
-            AdminController target = new AdminController(mock.Object)
+            ClimbingRouteController target = new ClimbingRouteController(mock.Object)
             {
                 TempData = tempData.Object
             };
 
             //Przygotowanie - tworzenie obiektu
-            TopoModel topoModel = new TopoModel { Territory = "Obszar1" };
+            ClimbingRouteModel topoModel = new ClimbingRouteModel { Name = "Obszar1" };
 
             //Działanie - prośba zapisania rekordu
             IActionResult result = target.Edit(topoModel);
@@ -182,10 +152,10 @@ namespace onSite.Tests
             Mock<ITopoRepository> mock = new Mock<ITopoRepository>();
 
             //Przygotowanie - tworzenie kontrolera
-            AdminController target = new AdminController(mock.Object);
+            ClimbingRouteController target = new ClimbingRouteController(mock.Object);
 
             //Przygotowanie - tworzenie obiektu
-            TopoModel topoModel = new TopoModel { Territory = "Obszar1" };
+            ClimbingRouteModel topoModel = new ClimbingRouteModel { Name = "Obszar1" };
 
             //Przygotowanie - dodanie błędu do stanu modelu
             target.ModelState.AddModelError("error", "error");
@@ -194,7 +164,7 @@ namespace onSite.Tests
             IActionResult result = target.Edit(topoModel);
 
             //Asercje - sprawdzanie, czy nie zostało wywołane repozytorium
-            mock.Verify(m => m.SaveTopo(It.IsAny<TopoModel>()), Times.Never());
+            mock.Verify(m => m.SaveTopo(It.IsAny<ClimbingRouteModel>()), Times.Never());
 
             //Asercje - sprawdzenie typu zwracanego z metody
             Assert.IsType<ViewResult>(result);

@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - onSite - portal wspinaczkowy</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -31,9 +31,6 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="Addresses" asp-controller="Home" asp-action="Index">Baza adresów</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="Identity" asp-controller="Admin" asp-action="TopoList">Do testów</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-auto">
